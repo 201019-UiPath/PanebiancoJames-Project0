@@ -2,24 +2,32 @@ using System;
 
 namespace GameKingdomLib
 {
+    /// <summary>
+    /// Orders model
+    /// </summary>
     public class Orders
     {
         /// <summary>
-        /// Auto Prop for Order Id
+        /// Auto Prop for OrderId
         /// </summary>
         /// <value></value>
         private int OrderId {get; set; }
 
         /// <summary>
-        /// Auto Prop for Order Date
+        /// Auto Prop for OrderDate
         /// </summary>
         /// <value></value>
         private DateTime OrderDate {get; set;}
 
-        public Orders(int orderId)
+        /// <summary>
+        /// Orders constructor
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <param name="orderDate"></param>
+        public Orders(int orderId, DateTime orderDate)
         {
             OrderId = orderId;
-            OrderDate = DateTime.Now;
+            OrderDate = orderDate;
         }
 
     }

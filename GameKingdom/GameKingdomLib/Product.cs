@@ -2,6 +2,9 @@ using System;
 
 namespace GameKingdomLib
 {
+    /// <summary>
+    /// Product model
+    /// </summary>
     public class Product
     {
 
@@ -15,12 +18,17 @@ namespace GameKingdomLib
         /// Auto Prop for ProductCost
         /// </summary>
         /// <value></value>
-        private int ProcutCost{get; set;}
+        private int ProductCost{get; set;}
 
+        /// <summary>
+        /// Product constructor
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <param name="productCost"></param>
         public Product(int productId, int productCost)
         {
             ProductId = productId;
-            ProcutCost = productCost;
+            ProductCost = productCost;
         }
     }
 }
