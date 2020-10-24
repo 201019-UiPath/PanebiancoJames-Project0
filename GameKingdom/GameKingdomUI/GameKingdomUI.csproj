@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GameKingdomLib\GameKingdomLib.csproj" />
+    <ProjectReference Include="..\GameKingdomBL\GameKingdomBL.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

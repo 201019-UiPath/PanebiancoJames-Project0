@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\GameKingdomDB\GameKingdomDB.csproj" />
     <ProjectReference Include="..\GameKingdomLib\GameKingdomLib.csproj" />
   </ItemGroup>
 

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GameKingdomDB\GameKingdomDB.csproj" />
+    <ProjectReference Include="..\GameKingdomBL\GameKingdomBL.csproj" />
   </ItemGroup>
 
 </Project>
