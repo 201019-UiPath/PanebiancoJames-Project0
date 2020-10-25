@@ -11,15 +11,20 @@ namespace GameKingdomLib
         /// Automatic Property for CustomerId
         /// </summary>
         /// <value></value>
-        private int CustomerId {get; set; }
+        public string CustomerId {get; set; }
 
         /// <summary>
-        /// Customer constructor
+        /// Customer constructor with ID
         /// </summary>
         /// <param name="customerId"></param>
-        public Customer(int customerId)
+        public Customer(string customerId)
         {
             CustomerId = customerId;
+        }
+
+        public Customer()
+        {
+            
         }
     }
 }

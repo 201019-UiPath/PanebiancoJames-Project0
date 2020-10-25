@@ -1,4 +1,6 @@
 ﻿using System;
+using GameKingdomLib;
+using GameKingdomUI.Menus;
 
 namespace GameKingdomUI
 {
@@ -6,8 +8,9 @@ namespace GameKingdomUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            
+            IMenu startMenu = new MainMenu();
+            startMenu.Start();
+
         }
     }
 }
