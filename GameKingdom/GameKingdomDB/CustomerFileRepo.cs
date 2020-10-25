@@ -23,8 +23,6 @@ namespace GameKingdomDB
         {
             using(FileStream fs = File.Create(filepath)){
                 await JsonSerializer.SerializeAsync(fs, customer);
-                // Test code to see if it ran.
-                System.Console.WriteLine("Customer is being written to file");
             }
         }
 
