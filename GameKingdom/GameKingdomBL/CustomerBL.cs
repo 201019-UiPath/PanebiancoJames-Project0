@@ -20,5 +20,7 @@ namespace GameKingdomBL
             Task<List<Customer>> getCustomers = repo.GetAllCustomersAsync();
             return getCustomers.Result;
         }
+
+        
     }
 }

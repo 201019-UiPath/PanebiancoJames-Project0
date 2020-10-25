@@ -11,7 +11,7 @@ namespace GameKingdomLib
         /// Auto Prop for OrderId
         /// </summary>
         /// <value></value>
-        private int OrderId {get; set; }
+        public int OrderId {get; set; }
 
         /// <summary>
         /// Auto Prop for OrderDate
@@ -28,6 +28,14 @@ namespace GameKingdomLib
         {
             OrderId = orderId;
             OrderDate = orderDate;
+        }
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public Orders()
+        {
+
         }
 
     }

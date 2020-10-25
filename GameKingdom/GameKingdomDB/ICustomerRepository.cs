@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace GameKingdomDB
 {
     /// <summary>
-    /// Data access interface for customer stuff
+    /// Data access interface for Customers
     /// </summary>
     public interface ICustomerRepository
     {
