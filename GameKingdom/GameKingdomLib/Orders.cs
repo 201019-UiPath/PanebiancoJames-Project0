@@ -17,7 +17,7 @@ namespace GameKingdomLib
         /// Auto Prop for OrderDate
         /// </summary>
         /// <value></value>
-        private DateTime OrderDate {get; set;}
+        public DateTime OrderDate {get; set;}
 
         /// <summary>
         /// Orders constructor

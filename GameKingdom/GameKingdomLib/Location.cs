@@ -13,13 +13,13 @@ namespace GameKingdomLib
         /// Auto Prop for TotalProduct
         /// </summary>
         /// <value></value>
-        private int TotalProduct {get; set;}
+        public int TotalProduct {get; set;}
 
         /// <summary>
         /// Auto Prop for OrderHistory
         /// </summary>
         /// <value></value>
-        private Dictionary<int,string> OrderHistory {get; set;}
+        public Dictionary<int,string> OrderHistory {get; set;}
 
         /// <summary>
         /// Location constructor

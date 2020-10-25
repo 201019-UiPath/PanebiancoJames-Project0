@@ -12,13 +12,13 @@ namespace GameKingdomLib
         /// Auto Prop for ProductId
         /// </summary>
         /// <value></value>
-        private int ProductId {get; set;}
+        public int ProductId {get; set;}
 
         /// <summary>
         /// Auto Prop for ProductCost
         /// </summary>
         /// <value></value>
-        private int ProductCost{get; set;}
+        public int ProductCost{get; set;}
 
         /// <summary>
         /// Product constructor
