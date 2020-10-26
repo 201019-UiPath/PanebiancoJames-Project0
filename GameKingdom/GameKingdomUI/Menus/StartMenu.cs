@@ -1,4 +1,8 @@
 using System;
+using GameKingdomLib;
+using GameKingdomBL;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace GameKingdomUI.Menus
 {
@@ -7,6 +11,7 @@ namespace GameKingdomUI.Menus
     /// </summary>
     public class StartMenu : IMenu
     {
+        CustomerBL customerBL = new CustomerBL();
         public void Start()
         {
             string userInput;
@@ -17,22 +22,49 @@ namespace GameKingdomUI.Menus
                 userInput = Console.ReadLine();
                 switch(userInput) 
                 {
+                    // User logs in
                     case "0":
-                        IMenu mainMenu = new MainMenu();
-                        mainMenu.Start();
+                        Customer customerDetials = GetCustomerDetails();
+                        List<Customer> allCustomers = customerBL.GetAllCustomers();
+                        foreach(var customer in allCustomers)
+                        {
+                            if (customerDetials.Equals(customer.CustomerId))
+                            {
+                                IMenu mainMenu = new MainMenu();
+                                mainMenu.Start();
+                                break;
+                            }
+                        }
                         break;
                     case "1":
-                        // IMenu signUp = new SignUp();
-                        // signUp.Start();
+                        Customer newCustomer = GetCustomerDetails();
+                        customerBL.AddCustomer(newCustomer);
+                        System.Console.WriteLine($"Customer {newCustomer.CustomerId} was created.");
                         break;
                     case "2":
                         Console.WriteLine("Thanks for stopping bye!");
                         break;
                     default:
-                        Console.WriteLine("Please enter in a valid option");
+                        Console.WriteLine("Invalid input! Please select a valid option!");
                         break;
                 }
             } while(!userInput.Equals("2"));
+        }
+
+        /// <summary>
+        /// Gets the users detials
+        /// </summary>
+        /// <returns></returns>
+        public Customer GetCustomerDetails()
+        {
+            Customer customer = new Customer();
+            do{
+                Console.WriteLine("Enter Customer ID: ");
+                customer.CustomerId = Console.ReadLine();
+                
+            }while(Regex.IsMatch(customer.CustomerId, "[\\d]"));
+            
+            return customer;           
         }
     }
 }

@@ -7,6 +7,7 @@ namespace GameKingdomLib
     /// <summary>
     /// Location model
     /// </summary>
+    
     public class Location
     {
         /// <summary>
@@ -30,6 +31,6 @@ namespace GameKingdomLib
         {
             TotalProduct = totalProduct;
             OrderHistory = orderHistory;
-        }
+        } 
     }
 }
