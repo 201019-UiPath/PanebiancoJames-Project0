@@ -1,4 +1,8 @@
 ﻿using System;
+using GameKingdomDB.Models;
+using GameKingdomDB;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GameKingdomUI
 {
@@ -6,7 +10,7 @@ namespace GameKingdomUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // Run code here
         }
     }
 }
