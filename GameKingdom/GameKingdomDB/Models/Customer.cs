@@ -1,7 +1,12 @@
+using System.Collections.Generic;
+
 namespace GameKingdomDB.Models
 {
-    public class Customer
+    /// <summary>
+    /// Customer Class
+    /// </summary>
+    public class Customer : Person
     {
-        
+        public List<User> Address {get; set;}
     }
 }
