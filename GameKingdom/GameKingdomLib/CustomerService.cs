@@ -17,7 +17,7 @@ namespace GameKingdomLib
 
         public void AddCustomer(Customer newCustomer)
         {
-            repo.AddACustomerAsync(newCustomer);
+            repo.AddACustomer(newCustomer);
         }
 
     }

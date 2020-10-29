@@ -6,6 +6,6 @@ namespace GameKingdomDB
 {
     public interface ICustomerRepo
     {
-         void AddACustomerAsync(Customer customer);
+        void AddACustomer(Customer customer);
     }
 }

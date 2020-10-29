@@ -7,6 +7,6 @@ namespace GameKingdomDB.Models
     /// </summary>
     public class Customer : Person
     {
-        public List<User> Address {get; set;}
+        
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using GameKingdomDB.Models;
 using GameKingdomDB;
+using GameKingdomDB.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,7 +11,8 @@ namespace GameKingdomUI
     {
         static void Main(string[] args)
         {
-            // Run code here
+            IMenu main = new MainMenu(new GameKingdomContext(), new DBMapper(), new MessagingService());
+            main.Start();
         }
     }
 }

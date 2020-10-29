@@ -1,9 +1,12 @@
+using System.Collections.Generic;
+
 namespace GameKingdomDB.Models
 {
+    /// <summary>
+    /// Manager Class
+    /// </summary>
     public class Manager : Person
     {
-        public Location workAddress {get; set;}
-
-        public int authentic {get; set;}
+        // public int ManagerId {get; set;}
     }
 }
