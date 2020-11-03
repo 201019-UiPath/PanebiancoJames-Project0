@@ -7,6 +7,8 @@ namespace GameKingdomDB.Models
     /// </summary>
     public class Manager : Person
     {
-        // public int ManagerId {get; set;}
+        new public int Id {get; set;}
+
+        public int LocationId {get; set;}
     }
 }

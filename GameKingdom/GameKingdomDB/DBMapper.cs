@@ -5,47 +5,43 @@ namespace GameKingdomDB
 {
     public class DBMapper : IMapper
     {
-        public Customer ParseCustomer(People customer)
+        public Models.Customer ParseCustomer(Entities.Customer customer)
         {
-            return new Customer()
-            {
+            return new Models.Customer() {
                 Name = customer.Name,
-                Address = customer.Address,
                 Password = customer.Password,
+                Address = customer.Address,
                 Id = customer.Id
             };
         }
 
-        public People ParseCustomer(Customer customer)
+        public Entities.Customer ParseCustomer(Models.Customer customer)
         {
-            return new People()
-            {
+            return new Entities.Customer() {
                 Name = customer.Name,
-                Address = customer.Address,
                 Password = customer.Password,
-                Chartype = 1
+                Address = customer.Address,
+                Id = customer.Id
             };
         }
 
-        public Manager ParseManager(People manager)
+        public Models.Manager ParseManager(Entities.Manager manager)
         {
-            return new Manager()
-            {
+            return new Models.Manager() {
                 Name = manager.Name,
-                Address = manager.Address,
                 Password = manager.Password,
+                LocationId = (int) manager.Locationid,
                 Id = manager.Id
             };
         }
 
-        public People ParseManager(Manager manager)
+        public Entities.Manager ParseManager(Models.Manager manager)
         {
-            return new People()
-            {
+            return new Entities.Manager() {
                 Name = manager.Name,
-                Address = manager.Address,
                 Password = manager.Password,
-                Chartype = 2
+                Locationid = manager.LocationId,
+                Id = manager.Id
             };
         }
     }

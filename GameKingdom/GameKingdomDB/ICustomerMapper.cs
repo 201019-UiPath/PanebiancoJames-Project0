@@ -1,13 +1,14 @@
-using GameKingdomDB.Models;
-using GameKingdomDB.Entities;
+using models = GameKingdomDB.Models;
+using entities = GameKingdomDB.Entities;
 
 namespace GameKingdomDB
 {
     public interface ICustomerMapper
     {
 
-        Customer ParseCustomer (People customer);
+        models.Customer ParseCustomer (entities.Customer customer);
 
-        People ParseCustomer (Customer customer);
+        entities.Customer ParseCustomer (models.Customer customer);
+
     }
 }

@@ -18,16 +18,22 @@ namespace GameKingdomDB
             this.context = context;
             this.mapper = mapper;
         }
-        public void AddACustomer(Customer customer)
+        public void AddACustomer(Models.Customer customer)
         {
-            context.People.Add(mapper.ParseCustomer(customer));
+            context.Customer.Add(mapper.ParseCustomer(customer));
             context.SaveChanges();
         }
 
-        public void AddAManager(Manager manager)
+        public Models.Customer GetACustomer(string name, string password)
         {
-            context.People.Add(mapper.ParseManager(manager));
+            return mapper.ParseCustomer(context.Customer.First(x => x.Name == name && x.Password == password));
+        }
+
+        public void AddAManager(Models.Manager manager)
+        {
+            context.Manager.Add(mapper.ParseManager(manager));
             context.SaveChanges();
         }
+
     }
 }

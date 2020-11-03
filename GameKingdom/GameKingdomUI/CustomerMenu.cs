@@ -27,7 +27,7 @@ namespace GameKingdomUI
         {
             do
             {
-                Console.WriteLine("Welcome Customer! What would you like to do?");
+                Console.WriteLine("\nWelcome Customer! What would you like to do?");
                 Console.WriteLine("[0] Signup?");
                 Console.WriteLine("[1] Login?");
                 Console.WriteLine("[2] Go back to the main menu?");
@@ -41,11 +41,16 @@ namespace GameKingdomUI
                         repo.AddACustomer(newCustomer);
                         break;
                     case "1":
-                        //call login   
-                                        
+                        //call create a customer, get customer details
+                        Customer loginCustomer = GetCustomerLogin();
+
+                        Customer existingCustomer = customerService.GetCustomer(loginCustomer.Name,loginCustomer.Password);
+                        
+                        Console.WriteLine($"\nCustomer Name: {existingCustomer.Name} \nCustomer Address: {existingCustomer.Address}");
                         break;
                     case "2":
-                        Console.WriteLine("Going back to main");
+                        //back to main menu message
+                        service.BackToMainMenuMessage();
                         break;
                     default:
                         //invalid input message;
@@ -55,13 +60,31 @@ namespace GameKingdomUI
             } while (!userInput.Equals("2"));
         }
 
+        /// <summary>
+        /// Gets user input for a new Customer
+        /// </summary>
+        /// <returns></returns>
         public Customer GetCustomerDetails()
         {
             Customer customer = new Customer();
-            Console.Write("Enter Your Name: ");
+            Console.Write("\nEnter Your Name: ");
             customer.Name = Console.ReadLine();
             Console.Write("Enter Your Address: ");
             customer.Address = Console.ReadLine();
+            Console.Write("Enter Your Password: ");
+            customer.Password = Console.ReadLine();
+            return customer;
+        }
+
+        /// <summary>
+        /// Gets user input for existing Customer
+        /// </summary>
+        /// <returns></returns>
+        public Customer GetCustomerLogin()
+        {
+            Customer customer = new Customer();
+            Console.Write("\nEnter Your Name: ");
+            customer.Name = Console.ReadLine();
             Console.Write("Enter Your Password: ");
             customer.Password = Console.ReadLine();
             return customer;

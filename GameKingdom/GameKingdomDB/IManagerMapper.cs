@@ -1,13 +1,14 @@
-using GameKingdomDB.Models;
-using GameKingdomDB.Entities;
+using models = GameKingdomDB.Models;
+using entities = GameKingdomDB.Entities;
 
 namespace GameKingdomDB
 {
     public interface IManagerMapper
     {
 
-        Manager ParseManager (People manager);
+        models.Manager ParseManager (entities.Manager manager);
 
-        People ParseManager (Manager manager);
+        entities.Manager ParseManager (models.Manager manager);
+
     }
 }

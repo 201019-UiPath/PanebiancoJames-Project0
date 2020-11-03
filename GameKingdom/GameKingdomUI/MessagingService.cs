@@ -6,7 +6,12 @@ namespace GameKingdomUI
     {
         public void InvalidInputMessage()
         {
-            Console.WriteLine("Invalid input! Please choose a valid option.");
+            Console.WriteLine("\nInvalid input! Please choose a valid option.");
+        }
+
+        public void BackToMainMenuMessage()
+        {
+            Console.WriteLine("\nGoing back to Main Menu.");
         }
     }
 }

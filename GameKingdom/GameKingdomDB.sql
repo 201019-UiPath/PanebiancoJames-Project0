@@ -1,30 +1,89 @@
--- drop table people;
--- drop table charactertype;
+-- drop table orders;
+-- drop table inventory;
+-- drop table product;
+-- drop table manager;
+-- drop table location;
+-- drop table customer;
 
--- creating the type of person --
-create table charactertype
-(
-	id serial primary key,
-	chartype varchar(15)
-);
-
--- creating the people table --
-create table people
+-- creating the customer table --
+create table customer
 (
 	id serial primary key,
 	name varchar(100) not null,
-	address varchar(200) not null,
     password varchar(200) not null,
-	chartype int references charactertype (id)
+	address varchar(200) not null
+);
+
+-- creating the location table --
+create table location
+(
+	id serial primary key,
+	state varchar(100) not null,
+	city varchar(200) not null,
+    street varchar(200) not null
+);
+
+-- creating the manager table --
+create table manager
+(
+	id serial primary key,
+	name varchar(100) not null,
+    password varchar(200) not null,
+	locationid int references location (id)
+);
+
+-- creating the product table --
+create table product
+(
+	id serial primary key,
+	gamename varchar(200) not null,
+	price int not null
+);
+
+-- creating the order table --
+create table orders
+(
+	id serial primary key,
+	date varchar(200) not null,
+	cost int not null,
+	customerid int references customer (id),
+	productid int references product (id),
+	locationid int references location (id)
+);
+
+-- creating the inventory table --
+create table inventory
+(
+	id serial primary key,
+	quantity int not null,
+	productid int references product (id),
+	locationid int references location (id)
 );
 
 -- inserting seed data --
-insert into charactertype (chartype) values 
-('Customer'), 
-('Manager');
+insert into customer (name, password, address) values
+('John Barr', '12345', '301 NY'),
+('Larry King', 'apassword', '750 CA');
 
-insert into people (name, address, password, chartype) values
-('John Barr', '453 CA','12345', 1),
-('Steve Smith', '123 NY','hello', 1),
-('Larry Jo', '276 NY','password', 2),
-('Ben Cor', '841 CA','mypassword', 2);
+
+insert into location (state, city, street) values
+('NY', 'Syracuse', 'E Jefferson St'),
+('CA', 'Los Angeles','W 35th St');
+
+insert into manager (name, password, locationid) values
+('John Barr', '12345', 1),
+('Larry King', 'apassword', 2);
+
+insert into product (gamename, price) values
+('Spyro', 35),
+('Cyberpunk 2077', 60);
+
+insert into orders (date, cost, customerid, productid, locationid) values
+('7/3/2020', 35, 1, 1, 1),
+('10/19/2020', 60, 2, 2, 2);
+
+insert into inventory (quantity, productid, locationid) values
+(20, 1, 1),
+(65, 2, 1),
+(10, 1, 2);
+(80, 2, 2);

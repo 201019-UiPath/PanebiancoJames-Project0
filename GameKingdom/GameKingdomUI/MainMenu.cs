@@ -26,7 +26,7 @@ namespace GameKingdomUI
         public void Start()
         {
             do{
-                Console.WriteLine("Welcome to GameKingdom! Are you a Customer or a Manager?");
+                Console.WriteLine("\nWelcome to GameKingdom! Are you a Customer or a Manager?");
                 Console.WriteLine("[0] Customer?");
                 Console.WriteLine("[1] Manager?");
                 Console.WriteLine("[2] Exit?");

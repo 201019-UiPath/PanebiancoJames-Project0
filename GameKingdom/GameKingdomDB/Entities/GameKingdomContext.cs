@@ -17,9 +17,13 @@ namespace GameKingdomDB.Entities
         {
         }
 
-        public virtual DbSet<Charactertype> Charactertype { get; set; }
-        public virtual DbSet<People> People { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<Inventory> Inventory { get; set; }
+        public virtual DbSet<Location> Location { get; set; }
+        public virtual DbSet<Manager> Manager { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<PgStatStatements> PgStatStatements { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -59,20 +63,9 @@ namespace GameKingdomDB.Entities
                 .HasPostgresExtension("uuid-ossp")
                 .HasPostgresExtension("xml2");
 
-            modelBuilder.Entity<Charactertype>(entity =>
+            modelBuilder.Entity<Customer>(entity =>
             {
-                entity.ToTable("charactertype");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Chartype)
-                    .HasColumnName("chartype")
-                    .HasMaxLength(15);
-            });
-
-            modelBuilder.Entity<People>(entity =>
-            {
-                entity.ToTable("people");
+                entity.ToTable("customer");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -81,7 +74,69 @@ namespace GameKingdomDB.Entities
                     .HasColumnName("address")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.Chartype).HasColumnName("chartype");
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasColumnName("password")
+                    .HasMaxLength(200);
+            });
+
+            modelBuilder.Entity<Inventory>(entity =>
+            {
+                entity.ToTable("inventory");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Locationid).HasColumnName("locationid");
+
+                entity.Property(e => e.Productid).HasColumnName("productid");
+
+                entity.Property(e => e.Quantity).HasColumnName("quantity");
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.Inventory)
+                    .HasForeignKey(d => d.Locationid)
+                    .HasConstraintName("inventory_locationid_fkey");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Inventory)
+                    .HasForeignKey(d => d.Productid)
+                    .HasConstraintName("inventory_productid_fkey");
+            });
+
+            modelBuilder.Entity<Location>(entity =>
+            {
+                entity.ToTable("location");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.City)
+                    .IsRequired()
+                    .HasColumnName("city")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.State)
+                    .IsRequired()
+                    .HasColumnName("state")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Street)
+                    .IsRequired()
+                    .HasColumnName("street")
+                    .HasMaxLength(200);
+            });
+
+            modelBuilder.Entity<Manager>(entity =>
+            {
+                entity.ToTable("manager");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Locationid).HasColumnName("locationid");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -93,10 +148,45 @@ namespace GameKingdomDB.Entities
                     .HasColumnName("password")
                     .HasMaxLength(200);
 
-                entity.HasOne(d => d.ChartypeNavigation)
-                    .WithMany(p => p.People)
-                    .HasForeignKey(d => d.Chartype)
-                    .HasConstraintName("people_chartype_fkey");
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.Manager)
+                    .HasForeignKey(d => d.Locationid)
+                    .HasConstraintName("manager_locationid_fkey");
+            });
+
+            modelBuilder.Entity<Orders>(entity =>
+            {
+                entity.ToTable("orders");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Cost).HasColumnName("cost");
+
+                entity.Property(e => e.Customerid).HasColumnName("customerid");
+
+                entity.Property(e => e.Date)
+                    .IsRequired()
+                    .HasColumnName("date")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Locationid).HasColumnName("locationid");
+
+                entity.Property(e => e.Productid).HasColumnName("productid");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.Customerid)
+                    .HasConstraintName("orders_customerid_fkey");
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.Locationid)
+                    .HasConstraintName("orders_locationid_fkey");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.Productid)
+                    .HasConstraintName("orders_productid_fkey");
             });
 
             modelBuilder.Entity<PgStatStatements>(entity =>
@@ -154,6 +244,20 @@ namespace GameKingdomDB.Entities
                 entity.Property(e => e.Userid)
                     .HasColumnName("userid")
                     .HasColumnType("oid");
+            });
+
+            modelBuilder.Entity<Product>(entity =>
+            {
+                entity.ToTable("product");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Gamename)
+                    .IsRequired()
+                    .HasColumnName("gamename")
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Price).HasColumnName("price");
             });
 
             OnModelCreatingPartial(modelBuilder);

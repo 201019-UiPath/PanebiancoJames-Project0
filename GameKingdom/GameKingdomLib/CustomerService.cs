@@ -20,5 +20,10 @@ namespace GameKingdomLib
             repo.AddACustomer(newCustomer);
         }
 
+        public Customer GetCustomer(string name, string password)
+        {
+            return repo.GetACustomer(name,password);
+        }
+
     }
 }

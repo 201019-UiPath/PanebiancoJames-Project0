@@ -27,7 +27,7 @@ namespace GameKingdomUI
         {
             do
             {
-                Console.WriteLine("Welcome Manager! What would you like to do?");
+                Console.WriteLine("\nWelcome Manager! What would you like to do?");
                 Console.WriteLine("[0] Signup?");
                 Console.WriteLine("[1] Login?");
                 Console.WriteLine("[2] Go back to the main menu?");
@@ -45,7 +45,8 @@ namespace GameKingdomUI
                                         
                         break;
                     case "2":
-                        Console.WriteLine("Going back to main");
+                        //back to main menu message
+                        service.BackToMainMenuMessage();
                         break;
                     default:
                         //invalid input message;
@@ -58,10 +59,8 @@ namespace GameKingdomUI
         public Manager GetManagerDetails()
         {
             Manager manager = new Manager();
-            Console.Write("Enter Your Name: ");
+            Console.Write("\nEnter Your Name: ");
             manager.Name = Console.ReadLine();
-            Console.Write("Enter Your Address: ");
-            manager.Address = Console.ReadLine();
             Console.Write("Enter Your Password: ");
             manager.Password = Console.ReadLine();
             return manager;
