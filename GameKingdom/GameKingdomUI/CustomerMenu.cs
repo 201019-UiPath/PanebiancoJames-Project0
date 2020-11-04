@@ -12,17 +12,19 @@ namespace GameKingdomUI
     {
         private string userInput;
 
+        private LocationMenu locationMenu;
+
+        private models.Customer customer;
+
         private entities.GameKingdomContext context;
-
-        private IMapper mapper;
-
+        
         private ICustomerRepo repo;
 
         private IMessagingService service;
 
         private CustomerService customerService;
 
-        private LocationMenu locationMenu;
+        private IMapper mapper;
             
         
         public CustomerMenu(entities.GameKingdomContext context, IMapper mapper, ICustomerRepo repo, IMessagingService service)
@@ -33,7 +35,8 @@ namespace GameKingdomUI
             this.service = service;
             
             this.customerService = new CustomerService(repo);
-            this.locationMenu = new LocationMenu(context, mapper, new DBRepo(context,mapper), new MessagingService());
+            this.locationMenu = new LocationMenu(customer, context, mapper, new DBRepo(context,mapper), new DBRepo(context,mapper),
+                                        new DBRepo(context,mapper), new DBRepo(context,mapper), new DBRepo(context,mapper), new MessagingService());
         }
 
         public void Start()
@@ -48,9 +51,9 @@ namespace GameKingdomUI
                 switch (userInput)
                 {
                     case "0":
-                        models.Customer newCustomer = SignUp();
+                        customer = SignUp();
                         Log.Information("New Customer Created");
-                        repo.AddACustomer(newCustomer);  
+                        repo.AddACustomer(customer);
                         Log.Information("Moved to Location Menu");
                         locationMenu.Start(); 
                         break;
