@@ -164,10 +164,7 @@ namespace GameKingdomDB.Entities
 
                 entity.Property(e => e.Customerid).HasColumnName("customerid");
 
-                entity.Property(e => e.Date)
-                    .IsRequired()
-                    .HasColumnName("date")
-                    .HasMaxLength(200);
+                entity.Property(e => e.Date).HasColumnName("date");
 
                 entity.Property(e => e.Locationid).HasColumnName("locationid");
 

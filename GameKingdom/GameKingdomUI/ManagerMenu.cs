@@ -3,6 +3,7 @@ using GameKingdomDB;
 using GameKingdomDB.Models;
 using GameKingdomLib;
 using System.Collections.Generic;
+using Serilog;
 
 namespace GameKingdomUI
 {

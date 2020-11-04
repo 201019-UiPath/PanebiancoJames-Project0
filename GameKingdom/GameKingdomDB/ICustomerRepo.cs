@@ -1,6 +1,5 @@
 using GameKingdomDB.Models;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace GameKingdomDB
 {
@@ -19,5 +18,7 @@ namespace GameKingdomDB
         /// <param name="password"></param>
         /// <returns></returns>
         Customer GetACustomer (string name, string password);
+
+        List<Customer> GetAllCustomers();
     }
 }

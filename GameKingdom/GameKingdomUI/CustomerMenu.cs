@@ -1,8 +1,10 @@
 using System;
 using GameKingdomDB;
-using GameKingdomDB.Models;
+using models = GameKingdomDB.Models;
+using entities = GameKingdomDB.Entities;
 using GameKingdomLib;
 using System.Collections.Generic;
+using Serilog;
 
 namespace GameKingdomUI
 {
@@ -10,17 +12,28 @@ namespace GameKingdomUI
     {
         private string userInput;
 
+        private entities.GameKingdomContext context;
+
+        private IMapper mapper;
+
         private ICustomerRepo repo;
 
         private IMessagingService service;
 
         private CustomerService customerService;
+
+        private LocationMenu locationMenu;
+            
         
-        public CustomerMenu(ICustomerRepo repo, IMessagingService service)
+        public CustomerMenu(entities.GameKingdomContext context, IMapper mapper, ICustomerRepo repo, IMessagingService service)
         {
+            this.context = context;
+            this.mapper = mapper;
             this.repo = repo;
             this.service = service;
+            
             this.customerService = new CustomerService(repo);
+            this.locationMenu = new LocationMenu(context, mapper, new DBRepo(context,mapper), new MessagingService());
         }
 
         public void Start()
@@ -35,25 +48,32 @@ namespace GameKingdomUI
                 switch (userInput)
                 {
                     case "0":
-                        //call create a customer, get customer details
-                        Customer newCustomer = GetCustomerDetails();
-                        //call the business logic and the repo
-                        repo.AddACustomer(newCustomer);
+                        models.Customer newCustomer = SignUp();
+                        Log.Information("New Customer Created");
+                        repo.AddACustomer(newCustomer);  
+                        Log.Information("Moved to Location Menu");
+                        locationMenu.Start(); 
                         break;
                     case "1":
                         //call create a customer, get customer details
-                        Customer loginCustomer = GetCustomerLogin();
-
-                        Customer existingCustomer = customerService.GetCustomer(loginCustomer.Name,loginCustomer.Password);
-                        
-                        Console.WriteLine($"\nCustomer Name: {existingCustomer.Name} \nCustomer Address: {existingCustomer.Address}");
+                        models.Customer loginCustomer = SignIn();
+                        try{
+                            models.Customer existingCustomer = customerService.GetCustomer(loginCustomer.Name,loginCustomer.Password);
+                            Console.WriteLine($"\nCustomer Name: {existingCustomer.Name} \nCustomer Address: {existingCustomer.Address}");
+                        } catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                            continue;
+                        }
                         break;
                     case "2":
                         //back to main menu message
+                        Log.Information("Back to Main Menu");
                         service.BackToMainMenuMessage();
                         break;
                     default:
                         //invalid input message;
+                        Log.Information($"Invalid Input Customer Menu: {userInput}");
                         service.InvalidInputMessage();
                         break;
                 }
@@ -64,15 +84,17 @@ namespace GameKingdomUI
         /// Gets user input for a new Customer
         /// </summary>
         /// <returns></returns>
-        public Customer GetCustomerDetails()
+        public models.Customer SignUp()
         {
-            Customer customer = new Customer();
+            models.Customer customer = new models.Customer();
+
             Console.Write("\nEnter Your Name: ");
             customer.Name = Console.ReadLine();
             Console.Write("Enter Your Address: ");
             customer.Address = Console.ReadLine();
             Console.Write("Enter Your Password: ");
             customer.Password = Console.ReadLine();
+
             return customer;
         }
 
@@ -80,14 +102,15 @@ namespace GameKingdomUI
         /// Gets user input for existing Customer
         /// </summary>
         /// <returns></returns>
-        public Customer GetCustomerLogin()
+        public models.Customer SignIn()
         {
-            Customer customer = new Customer();
+            models.Customer customer = new models.Customer();
             Console.Write("\nEnter Your Name: ");
             customer.Name = Console.ReadLine();
             Console.Write("Enter Your Password: ");
             customer.Password = Console.ReadLine();
             return customer;
         }
+
     }
 }

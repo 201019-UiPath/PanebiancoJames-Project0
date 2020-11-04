@@ -44,7 +44,7 @@ create table product
 create table orders
 (
 	id serial primary key,
-	date varchar(200) not null,
+	date timestamp not null,
 	cost int not null,
 	customerid int references customer (id),
 	productid int references product (id),
@@ -78,9 +78,6 @@ insert into product (gamename, price) values
 ('Spyro', 35),
 ('Cyberpunk 2077', 60);
 
-insert into orders (date, cost, customerid, productid, locationid) values
-('7/3/2020', 35, 1, 1, 1),
-('10/19/2020', 60, 2, 2, 2);
 
 insert into inventory (quantity, productid, locationid) values
 (20, 1, 1),

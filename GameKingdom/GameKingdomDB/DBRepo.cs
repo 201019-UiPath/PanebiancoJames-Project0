@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 using GameKingdomDB.Entities;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace GameKingdomDB
 {
-    public class DBRepo : ICustomerRepo, IManagerRepo
+    public class DBRepo : ICustomerRepo, IManagerRepo, IOrderRepo, IProductRepo, ILocationRepo, IInventoryRepo
     {
         private readonly GameKingdomContext context;
 
@@ -35,5 +36,126 @@ namespace GameKingdomDB
             context.SaveChanges();
         }
 
+        public List<Models.Customer> GetAllCustomers()
+        {
+            return mapper.ParseCustomer(
+                context.Customer.
+                ToList());
+        }
+
+        public void AddOrder(Models.Orders order)
+        {
+            context.Orders.Add(mapper.ParseOrders(order));
+            context.SaveChanges();
+        }
+
+        public Models.Orders GetOrdersById(int id)
+        {
+            return mapper.ParseOrders(context.Orders.First(x => x.Id == id));
+        }
+
+        public Models.Orders GetOrdersByCustomerId(int id)
+        {
+            return mapper.ParseOrders(context.Orders.First(x => x.Customerid == id));
+        }
+
+        public Models.Orders GetOrdersByLocationId(int id)
+        {
+            return mapper.ParseOrders(context.Orders.First(x => x.Locationid == id));
+        }
+
+        public Models.Orders GetOrdersByDate(DateTime date)
+        {
+            return mapper.ParseOrders(context.Orders.First(x => x.Date == date));
+        }
+
+        public List<Models.Orders> GetAllOrdersByCustomerId(int id)
+        {
+            return mapper.ParseOrders(context.Orders.Where(x => x.Customerid == id).ToList());
+        }
+
+        public List<Models.Orders> GetAllOrdersByLocationId(int id)
+        {
+            return mapper.ParseOrders(context.Orders.Where(x => x.Locationid == id).ToList());
+        }
+
+        public void AddProduct(Models.Product product)
+        {
+            context.Product.Add(mapper.ParseProduct(product));
+            context.SaveChanges();
+        }
+
+        public Models.Product GetProductById(int id)
+        {
+            return mapper.ParseProduct(context.Product.First(x => x.Id == id));
+        }
+
+        public Models.Product GetProductByName(string name)
+        {
+            return mapper.ParseProduct(context.Product.First(x => x.Gamename == name));
+        }
+
+        public List<Models.Product> GetAllProducts()
+        {
+            return mapper.ParseProduct(context.Product.ToList());
+        }
+
+        public List<Models.Product> GetAllProductsById(int id)
+        {
+            return mapper.ParseProduct(context.Product.Where(x => x.Id == id).ToList());
+        }
+
+        public void AddLocation(Models.Location location)
+        {
+            context.Location.Add(mapper.ParseLocation(location));
+            context.SaveChanges();
+        }
+
+        public Models.Location GetLocationById(int id)
+        {
+            return mapper.ParseLocation(context.Location.First(x => x.Id == id));
+        }
+
+        public List<Models.Location> GetAllLocations()
+        {
+            return mapper.ParseLocation(context.Location.ToList());
+        }
+
+        public void AddToInventory(Models.Inventory inventoryItem)
+        {
+            context.Inventory.Add(mapper.ParseInventory(inventoryItem));
+            context.SaveChanges();
+        }
+
+        public void UpdateInventory(Models.Inventory inventoryItem)
+        {
+            context.Inventory.Update(mapper.ParseInventory(inventoryItem));
+            context.SaveChanges();
+        }
+
+        public Models.Inventory GetInventoryById(int id)
+        {
+            return mapper.ParseInventory(context.Inventory.First(x => x.Id == id));
+        }
+
+        public Models.Inventory GetInventoryByLocationId(int id)
+        {
+            return mapper.ParseInventory(context.Inventory.First(x => x.Locationid == id));
+        }
+
+        public Models.Inventory GetProductByLocationAndProductId(int locationId, int productId)
+        {
+            return mapper.ParseInventory(context.Inventory.First(x => x.Locationid == locationId && x.Productid == productId));
+        }
+
+        public List<Models.Inventory> GetInventoriesById(int id)
+        {
+            return mapper.ParseInventory(context.Inventory.Where(x => x.Id == id).ToList());
+        }
+
+        public List<Models.Inventory> GetInventoriesByLocationId(int id)
+        {
+            return mapper.ParseInventory(context.Inventory.Where(x => x.Locationid == id).ToList());
+        }
     }
 }
