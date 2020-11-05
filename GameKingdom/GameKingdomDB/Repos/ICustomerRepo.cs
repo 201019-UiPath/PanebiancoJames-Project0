@@ -1,7 +1,7 @@
 using GameKingdomDB.Models;
 using System.Collections.Generic;
 
-namespace GameKingdomDB
+namespace GameKingdomDB.Repos
 {
     public interface ICustomerRepo
     {
@@ -17,7 +17,9 @@ namespace GameKingdomDB
         /// <param name="name"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        Customer GetACustomer (string name, string password);
+        Customer SignInCustomer (string name, string password);
+
+        Customer GetCustomer(string name, string password);
 
         List<Customer> GetAllCustomers();
     }

@@ -2,7 +2,7 @@ using GameKingdomDB.Models;
 using System;
 using System.Collections.Generic;
 
-namespace GameKingdomDB
+namespace GameKingdomDB.Repos
 {
     public interface IOrderRepo
     {

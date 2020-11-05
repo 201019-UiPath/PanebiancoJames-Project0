@@ -2,7 +2,7 @@ using GameKingdomDB.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GameKingdomDB
+namespace GameKingdomDB.Repos
 {
     public interface IManagerRepo
     {

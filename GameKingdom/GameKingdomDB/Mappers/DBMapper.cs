@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using GameKingdomDB.Entities;
-using GameKingdomDB.Models;
 
-namespace GameKingdomDB
+namespace GameKingdomDB.Mappers
 {
     public class DBMapper : IMapper
     {

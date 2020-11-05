@@ -1,5 +1,5 @@
 using GameKingdomDB.Models;
-using GameKingdomDB;
+using GameKingdomDB.Repos;
 using System.Collections.Generic;
 using System;
 using Serilog;

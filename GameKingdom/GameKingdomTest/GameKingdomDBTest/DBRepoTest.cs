@@ -1,7 +1,8 @@
 using Xunit;
 using entities = GameKingdomDB.Entities;
 using models = GameKingdomDB.Models;
-using GameKingdomDB;
+using GameKingdomDB.Mappers;
+using GameKingdomDB.Repos;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -159,7 +160,7 @@ namespace GameKingdomTest.GameKingdomDBTest
             // Act
             using var assertContext = new entities.GameKingdomContext(options);
             repo = new DBRepo(assertContext, mapper);
-            var result = repo.GetACustomer("Larry", "iamLarry");
+            var result = repo.SignInCustomer("Larry", "iamLarry");
 
             // Assert
             Assert.NotNull(result);

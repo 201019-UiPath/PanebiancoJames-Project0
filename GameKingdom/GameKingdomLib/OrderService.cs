@@ -1,5 +1,5 @@
 using GameKingdomDB.Models;
-using GameKingdomDB;
+using GameKingdomDB.Repos;
 using System.Collections.Generic;
 using System;
 using Serilog;
@@ -10,9 +10,16 @@ namespace GameKingdomLib
     {
         private IOrderRepo repo;
 
+        private ProductService productService;
+
+        private LocationService locationService;
+
         public OrderService(IOrderRepo repo)
         {
             this.repo = repo;
+
+            this.locationService = new LocationService((ILocationRepo) repo);
+            this.productService = new ProductService((IProductRepo) repo);
         }
 
         public void AddOrder(Orders newOrder)

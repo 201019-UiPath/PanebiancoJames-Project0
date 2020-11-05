@@ -1,4 +1,4 @@
-using GameKingdomDB.Models;
+using GameKingdomDB.Mappers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GameKingdomDB.Entities;
@@ -6,7 +6,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace GameKingdomDB
+namespace GameKingdomDB.Repos
 {
     public class DBRepo : ICustomerRepo, IManagerRepo, IOrderRepo, IProductRepo, ILocationRepo, IInventoryRepo
     {
@@ -25,7 +25,7 @@ namespace GameKingdomDB
             context.SaveChanges();
         }
 
-        public Models.Customer GetACustomer(string name, string password)
+        public Models.Customer SignInCustomer(string name, string password)
         {
             return mapper.ParseCustomer(context.Customer.First(x => x.Name == name && x.Password == password));
         }
@@ -127,9 +127,9 @@ namespace GameKingdomDB
             context.SaveChanges();
         }
 
-        public void UpdateInventory(Models.Inventory inventoryItem)
+        public void UpdateInventory(Models.Inventory inventoryItem, int quantity)
         {
-            context.Inventory.Update(mapper.ParseInventory(inventoryItem));
+            context.Inventory.Single(x => x.Id == inventoryItem.Id).Quantity -= quantity;
             context.SaveChanges();
         }
 
@@ -156,6 +156,11 @@ namespace GameKingdomDB
         public List<Models.Inventory> GetInventoriesByLocationId(int id)
         {
             return mapper.ParseInventory(context.Inventory.Where(x => x.Locationid == id).ToList());
+        }
+
+        public Models.Customer GetCustomer(string name, string password)
+        {
+            return mapper.ParseCustomer(context.Customer.First(x => x.Name == name && x.Password == password));
         }
     }
 }

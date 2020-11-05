@@ -1,7 +1,8 @@
 using System;
-using GameKingdomDB;
 using models = GameKingdomDB.Models;
-using entities = GameKingdomDB.Entities;
+using GameKingdomDB.Entities;
+using GameKingdomDB.Mappers;
+using GameKingdomDB.Repos;
 using GameKingdomLib;
 using System.Collections.Generic;
 using Serilog;
@@ -16,27 +17,16 @@ namespace GameKingdomUI
 
         private models.Customer customer;
 
-        private entities.GameKingdomContext context;
-        
-        private ICustomerRepo repo;
-
         private IMessagingService service;
 
         private CustomerService customerService;
-
-        private IMapper mapper;
-            
+      
         
-        public CustomerMenu(entities.GameKingdomContext context, IMapper mapper, ICustomerRepo repo, IMessagingService service)
+        public CustomerMenu(ICustomerRepo repo, IMessagingService service)
         {
-            this.context = context;
-            this.mapper = mapper;
-            this.repo = repo;
             this.service = service;
             
             this.customerService = new CustomerService(repo);
-            this.locationMenu = new LocationMenu(customer, context, mapper, new DBRepo(context,mapper), new DBRepo(context,mapper),
-                                        new DBRepo(context,mapper), new DBRepo(context,mapper), new DBRepo(context,mapper), new MessagingService());
         }
 
         public void Start()
@@ -53,8 +43,11 @@ namespace GameKingdomUI
                     case "0":
                         customer = SignUp();
                         Log.Information("New Customer Created");
-                        repo.AddACustomer(customer);
+                        customerService.AddCustomer(customer);
+                        // Sets customer id
+                        customer = customerService.GetCustomer(customer.Name, customer.Password);
                         Log.Information("Moved to Location Menu");
+                        locationMenu = new LocationMenu(customer, (ILocationRepo) customerService.repo, new MessagingService());
                         locationMenu.Start(); 
                         break;
                     case "1":

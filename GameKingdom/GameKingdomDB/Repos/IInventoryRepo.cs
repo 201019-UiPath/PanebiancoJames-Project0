@@ -1,13 +1,13 @@
 using GameKingdomDB.Models;
 using System.Collections.Generic;
 
-namespace GameKingdomDB
+namespace GameKingdomDB.Repos
 {
     public interface IInventoryRepo
     {
         void AddToInventory(Inventory inventoryItem);
 
-        void UpdateInventory(Inventory inventoryItem);
+        void UpdateInventory(Inventory inventoryItem, int quantity);
 
         Inventory GetInventoryById(int id);
 

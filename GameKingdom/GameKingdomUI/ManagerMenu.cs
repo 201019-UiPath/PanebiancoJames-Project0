@@ -2,6 +2,8 @@ using System;
 using GameKingdomDB;
 using GameKingdomDB.Models;
 using GameKingdomLib;
+using GameKingdomDB.Mappers;
+using GameKingdomDB.Repos;
 using System.Collections.Generic;
 using Serilog;
 

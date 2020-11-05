@@ -1,5 +1,5 @@
 using GameKingdomDB.Models;
-using GameKingdomDB;
+using GameKingdomDB.Repos;
 using System.Collections.Generic;
 using System;
 using Serilog;
@@ -20,9 +20,9 @@ namespace GameKingdomLib
             repo.AddToInventory(newInventoryItem);
         }
 
-        public void UpdateInventory(Inventory inventoryItem)
+        public void UpdateInventory(Inventory inventoryItem,int quantity)
         {
-            repo.UpdateInventory(inventoryItem);
+            repo.UpdateInventory(inventoryItem, quantity);
         }
 
         public Inventory GetInventoryById(int id)

@@ -1,7 +1,9 @@
 using System;
 using GameKingdomDB;
 using models = GameKingdomDB.Models;
-using entities = GameKingdomDB.Entities;
+using GameKingdomDB.Entities;
+using GameKingdomDB.Mappers;
+using GameKingdomDB.Repos;
 using GameKingdomLib;
 using System.Collections.Generic;
 using Serilog;
@@ -12,56 +14,33 @@ namespace GameKingdomUI
     {
         private string userInputLocation;
 
-        private ILocationRepo locationRepo;
-
-        private IOrderRepo orderRepo;
-
-        private IInventoryRepo inventoryRepo;
-
-        private IProductRepo productRepo;
-
-        private IMessagingService service;
-
         private LocationService locationService;
+        private InventoryService inventoryService;
+        private OrderService orderService;
+        private ProductService productService;
+        //private CustomerService customerService;
+        
 
         private models.Product selectedProduct;
 
         private models.Customer customer;
 
-        private entities.GameKingdomContext context;
-
-        private IMapper mapper;
-
-        private InventoryService inventoryService;
-
-        private OrderService orderService;
-
-        private ProductService productService;
-
-        private CustomerService customerService;
-
-        private ICustomerRepo customerRepo;
+        private IMessagingService service;
 
         private DateTime date = DateTime.Now;
 
-        public LocationMenu(models.Customer customer, entities.GameKingdomContext context, IMapper mapper, ILocationRepo locationRepo,
-                            IOrderRepo orderRepo, IInventoryRepo inventoryRepo, IProductRepo productRepo, ICustomerRepo customerRepo, IMessagingService service)
+
+        public LocationMenu(models.Customer customer, ILocationRepo locationRepo, IMessagingService service)
         {
             this.customer = customer;
-            this.context = context;
-            this.mapper = mapper;
             this.service = service;
-            this.locationRepo = locationRepo;
-            this.orderRepo = orderRepo;
-            this.inventoryRepo = inventoryRepo;
-            this.productRepo = productRepo;
-            this.customerRepo = customerRepo;
+
 
             this.locationService = new LocationService(locationRepo);
-            this.inventoryService = new InventoryService(inventoryRepo);
-            this.orderService = new OrderService(orderRepo);
-            this.productService = new ProductService(productRepo);
-            this.customerService = new CustomerService(customerRepo);
+            this.inventoryService = new InventoryService((IInventoryRepo) locationRepo);
+            this.orderService = new OrderService((IOrderRepo) locationRepo);
+            this.productService = new ProductService((IProductRepo) locationRepo);
+            //this.customerService = new CustomerService((ICustomerRepo) locationRepo);
         }
         
         public void Start()
@@ -71,7 +50,7 @@ namespace GameKingdomUI
                 List<models.Location> locations = locationService.GetAllLocations();
                 foreach(var l in locations)
                 {
-                    Console.WriteLine($"Id: {l.Id}\t State: {l.State}, City: {l.City}, Street: {l.Street}");
+                    Console.WriteLine($"Index: {/*locations.IndexOf(l)*/l.Id}\t State: {l.State}, City: {l.City}, Street: {l.Street}");
                 }
                 Console.WriteLine("Press [3] to go back to Main Menu");
                 userInputLocation = Console.ReadLine();
@@ -127,7 +106,7 @@ namespace GameKingdomUI
             string inventoryInput;
             do {
                 Console.WriteLine("\nSelect a Product");
-                List<models.Inventory> items = inventoryService.GetInventoriesByLocationId(1);
+                List<models.Inventory> items = inventoryService.GetInventoriesByLocationId(int.Parse(userInputLocation));
                 foreach(var i in items)
                 {
                     models.Product product = productService.GetProductById(i.ProductId);
@@ -142,30 +121,28 @@ namespace GameKingdomUI
                     break;
                 }
 
-                selectedProduct = productService.GetProductById(1);
+                selectedProduct = productService.GetProductById(int.Parse(inventoryInput));
 
+                Console.WriteLine($"{selectedProduct.GameName}");
                 Log.Information($"User Chose Item: {selectedProduct.GameName}");
 
-                models.Orders aOrder = NewOrder(1, selectedProduct);
-                orderRepo.AddOrder(aOrder);
-
-                Log.Information($"User Made Order: {aOrder.Id}");
-
+                NewOrder();
                 
-
+                Log.Information("User Made Order");
 
             } while (!inventoryInput.Equals("0"));
         }
 
-        public models.Orders NewOrder(int id, models.Product product)
+        public void NewOrder()
         {
             models.Orders orders = new models.Orders();
-            orders.CustomerId = 1;
-            orders.LocationId = 1;
-            orders.ProductId = id;
-            orders.Cost = product.Price;
+            orders.CustomerId = customer.Id;
+            orders.LocationId = int.Parse(userInputLocation);
+            orders.ProductId = selectedProduct.Id;
+            orders.Cost = selectedProduct.Price;
             orders.OrderDate = date;
-            return orders;
+
+            orderService.AddOrder(orders);
         }
     }
 }

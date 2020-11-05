@@ -1,9 +1,7 @@
 using System;
-using GameKingdomDB;
-using entities = GameKingdomDB.Entities;
-using models = GameKingdomDB.Models;
-using GameKingdomLib;
-using System.Collections.Generic;
+using GameKingdomDB.Entities;
+using GameKingdomDB.Mappers;
+using GameKingdomDB.Repos;
 using Serilog;
 
 namespace GameKingdomUI
@@ -12,25 +10,18 @@ namespace GameKingdomUI
     {
         // stores user input
         private string userInput;
-
         private CustomerMenu customerMenu;
-
         private ManagerMenu managerMenu;
-
         private IMessagingService service;
-
-        private entities.GameKingdomContext context;
-
+        private GameKingdomContext context;
         private IMapper mapper;
         
    
-        public MainMenu(entities.GameKingdomContext context, IMapper mapper, IMessagingService service)
+        public MainMenu(GameKingdomContext context, IMapper mapper, IMessagingService service)
         {
             this.context = context;
             this.mapper = mapper;
             this.service = service;
-            this.customerMenu = new CustomerMenu(context, mapper, new DBRepo(context,mapper), new MessagingService());
-            this.managerMenu = new ManagerMenu(new DBRepo(context,mapper), new MessagingService());
         }
         
         public void Start()
@@ -45,11 +36,13 @@ namespace GameKingdomUI
                 {
                     case "0":
                         //call the customer menu;
+                        customerMenu = new CustomerMenu(new DBRepo(context,mapper), service);
                         Log.Information("Customer Menu Launched");
                         customerMenu.Start();
                         break;
                     case "1":
                         //call the manager menu;
+                        managerMenu = new ManagerMenu(new DBRepo(context,mapper), service);
                         Log.Information("Manager Menu Launched");
                         managerMenu.Start();
                         break;
