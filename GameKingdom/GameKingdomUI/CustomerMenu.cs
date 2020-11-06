@@ -26,6 +26,8 @@ namespace GameKingdomUI
         {
             this.service = service;
             
+            this.customer = new models.Customer();
+            
             this.customerService = new CustomerService(repo);
         }
 
@@ -41,9 +43,8 @@ namespace GameKingdomUI
                 switch (userInput)
                 {
                     case "0":
-                        customer = SignUp();
+                        SignUp();
                         Log.Information("New Customer Created");
-                        customerService.AddCustomer(customer);
                         // Sets customer id
                         customer = customerService.GetCustomer(customer.Name, customer.Password);
                         Log.Information("Moved to Location Menu");
@@ -80,9 +81,8 @@ namespace GameKingdomUI
         /// Gets user input for a new Customer
         /// </summary>
         /// <returns></returns>
-        public models.Customer SignUp()
+        public void SignUp()
         {
-            models.Customer customer = new models.Customer();
 
             Console.Write("\nEnter Your Name: ");
             customer.Name = Console.ReadLine();
@@ -91,7 +91,7 @@ namespace GameKingdomUI
             Console.Write("Enter Your Password: ");
             customer.Password = Console.ReadLine();
 
-            return customer;
+            customerService.AddCustomer(customer);
         }
 
         /// <summary>

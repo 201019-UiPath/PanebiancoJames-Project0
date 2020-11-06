@@ -237,3 +237,16 @@
  2020-11-04 18:18:41.817 -05:00 [INF] User Made Order
  2020-11-04 18:18:48.841 -05:00 [INF] User Chose Item: Cyberpunk 2077
  2020-11-04 18:18:48.910 -05:00 [INF] User Made Order
+ 2020-11-05 09:17:45.779 -05:00 [INF] Program has started
+ 2020-11-05 09:17:47.931 -05:00 [INF] Customer Menu Launched
+ 2020-11-05 09:19:07.677 -05:00 [INF] Program has started
+ 2020-11-05 09:19:09.210 -05:00 [INF] Customer Menu Launched
+ 2020-11-05 09:19:23.235 -05:00 [INF] New Customer Created
+ 2020-11-05 09:19:23.378 -05:00 [INF] Moved to Location Menu
+ 2020-11-05 09:19:25.593 -05:00 [INF] User Chose Location Id: 2
+ 2020-11-05 09:19:27.085 -05:00 [INF] User Chose Inventory
+ 2020-11-05 09:19:30.105 -05:00 [INF] User Chose Item: Cyberpunk 2077
+ 2020-11-05 09:19:30.192 -05:00 [INF] User Made Order
+ 2020-11-05 09:19:38.124 -05:00 [INF] Back to Customer Menu
+ 2020-11-05 09:19:39.483 -05:00 [INF] Back to Main Menu
+ 2020-11-05 09:19:40.731 -05:00 [INF] Program Exited

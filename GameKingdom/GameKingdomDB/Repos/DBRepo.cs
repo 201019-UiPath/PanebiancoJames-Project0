@@ -5,10 +5,11 @@ using GameKingdomDB.Entities;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
+using GameKingdomDB.Models;
 
 namespace GameKingdomDB.Repos
 {
-    public class DBRepo : ICustomerRepo, IManagerRepo, IOrderRepo, IProductRepo, ILocationRepo, IInventoryRepo
+    public class DBRepo : ICustomerRepo, IManagerRepo, IOrderRepo, IProductRepo, ILocationRepo, IInventoryRepo, IOrderItemsRepo
     {
         private readonly GameKingdomContext context;
 
@@ -161,6 +162,88 @@ namespace GameKingdomDB.Repos
         public Models.Customer GetCustomer(string name, string password)
         {
             return mapper.ParseCustomer(context.Customer.First(x => x.Name == name && x.Password == password));
+        }
+
+        public void AddToOrderItems(OrderItems orderItems)
+        {
+            context.Orderitems.Add(mapper.ParseOrderItems(orderItems));
+            context.SaveChanges();
+        }
+
+        public void UpdateOrderItems(OrderItems orderItems, int quantity)
+        {
+            context.Orderitems.Single(x => x.Id == orderItems.Id).Totalitems += quantity;
+            context.SaveChanges();
+        }
+
+        public OrderItems GetOrderItemById(int id)
+        {
+            return mapper.ParseOrderItems(context.Orderitems.First(x => x.Id == id));
+        }
+
+        public OrderItems GetOrderItemByOrderId(int id)
+        {
+            return mapper.ParseOrderItems(context.Orderitems.First(x => x.Orderid == id));
+        }
+
+        public OrderItems GetOrderItemByProductId(int id)
+        {
+            return mapper.ParseOrderItems(context.Orderitems.First(x => x.Productid == id));
+        }
+
+        public OrderItems GetOrderItemByOrderAndProductId(int orderId, int productId)
+        {
+            return mapper.ParseOrderItems(context.Orderitems.First(x => x.Orderid == orderId && x.Productid == productId));
+        }
+
+        public List<OrderItems> GetOrderItemsById(int id)
+        {
+            return mapper.ParseOrderItems(context.Orderitems.Where(x => x.Id == id).ToList());
+        }
+
+        public List<OrderItems> GetOrderItemsByOrderId(int id)
+        {
+            return mapper.ParseOrderItems(context.Orderitems.Where(x => x.Orderid == id).ToList());
+        }
+
+        public List<Models.Orders> GetAllOrdersDateAsc(int customerId)
+        {
+            return mapper.ParseOrders(context.Orders.Where(x => x.Customerid == customerId).OrderBy(x => x.Date).ToList());
+        }
+
+        public List<Models.Orders> GetAllOrdersDateDesc(int customerId)
+        {
+            return mapper.ParseOrders(context.Orders.Where(x => x.Customerid == customerId).OrderByDescending(x => x.Date).ToList());
+        }
+
+        public List<Models.Orders> GetAllOrdersPriceAsc(int customerId)
+        {
+            return mapper.ParseOrders(context.Orders.Where(x => x.Customerid == customerId).OrderBy(x => x.Cost).ToList());
+        }
+
+        public List<Models.Orders> GetAllOrdersPriceDesc(int customerId)
+        {
+            return mapper.ParseOrders(context.Orders.Where(x => x.Customerid == customerId).OrderByDescending(x => x.Cost).ToList());
+        }
+
+        public List<Models.Orders> GetAllLocationOrdersDateAsc(int locationId)
+        {
+            return mapper.ParseOrders(context.Orders.Where(x => x.Locationid == locationId).OrderBy(x => x.Date).ToList());
+        }
+
+        public List<Models.Orders> GetAllLocationOrdersDateDesc(int locationId)
+        {
+            return mapper.ParseOrders(context.Orders.Where(x => x.Locationid == locationId).OrderByDescending(x => x.Date).ToList());
+        }
+
+        public List<Models.Orders> GetAllLocationOrdersPriceAsc(int locationId)
+        {
+            return mapper.ParseOrders(context.Orders.Where(x => x.Locationid == locationId).OrderBy(x => x.Cost).ToList());
+        }
+
+        public List<Models.Orders> GetAllLocationOrdersPriceDesc(int locationId)
+        {
+            return mapper.ParseOrders(context.Orders.Where(x => x.Locationid == locationId).OrderByDescending(x => x.Cost).ToList());
         }
     }
 }

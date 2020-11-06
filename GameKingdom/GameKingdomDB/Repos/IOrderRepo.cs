@@ -20,10 +20,14 @@ namespace GameKingdomDB.Repos
 
         List<Orders> GetAllOrdersByLocationId(int id);
 
-        /*
-
-            Code to get Asc/Desc dates and prices
-
-        */
+        List<Orders> GetAllOrdersDateAsc(int userId);
+        List<Orders> GetAllOrdersDateDesc(int userId);
+        List<Orders> GetAllOrdersPriceAsc(int userId);
+        List<Orders> GetAllOrdersPriceDesc(int userId);
+        List<Orders> GetAllLocationOrdersDateAsc(int locationId);
+        List<Orders> GetAllLocationOrdersDateDesc(int locationId);
+        List<Orders> GetAllLocationOrdersPriceAsc(int locationId);
+        List<Orders> GetAllLocationOrdersPriceDesc(int locationId);
+        
     }
 }

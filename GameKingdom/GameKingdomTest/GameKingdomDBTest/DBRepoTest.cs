@@ -109,7 +109,6 @@ namespace GameKingdomTest.GameKingdomDBTest
                 //Date = 
                 Cost = 25,
                 Customerid = 1,
-                Productid = 1,
                 Locationid = 1
             },
             new entities.Orders() 
@@ -117,7 +116,6 @@ namespace GameKingdomTest.GameKingdomDBTest
                 //Date = "9/4/2020",
                 Cost = 50,
                 Customerid = 2,
-                Productid = 2,
                 Locationid = 2
             }
         };

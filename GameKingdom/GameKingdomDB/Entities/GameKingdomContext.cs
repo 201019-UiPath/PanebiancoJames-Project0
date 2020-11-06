@@ -21,6 +21,7 @@ namespace GameKingdomDB.Entities
         public virtual DbSet<Inventory> Inventory { get; set; }
         public virtual DbSet<Location> Location { get; set; }
         public virtual DbSet<Manager> Manager { get; set; }
+        public virtual DbSet<Orderitems> Orderitems { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<PgStatStatements> PgStatStatements { get; set; }
         public virtual DbSet<Product> Product { get; set; }
@@ -154,6 +155,29 @@ namespace GameKingdomDB.Entities
                     .HasConstraintName("manager_locationid_fkey");
             });
 
+            modelBuilder.Entity<Orderitems>(entity =>
+            {
+                entity.ToTable("orderitems");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Orderid).HasColumnName("orderid");
+
+                entity.Property(e => e.Productid).HasColumnName("productid");
+
+                entity.Property(e => e.Totalitems).HasColumnName("totalitems");
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.Orderitems)
+                    .HasForeignKey(d => d.Orderid)
+                    .HasConstraintName("orderitems_orderid_fkey");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Orderitems)
+                    .HasForeignKey(d => d.Productid)
+                    .HasConstraintName("orderitems_productid_fkey");
+            });
+
             modelBuilder.Entity<Orders>(entity =>
             {
                 entity.ToTable("orders");
@@ -168,8 +192,6 @@ namespace GameKingdomDB.Entities
 
                 entity.Property(e => e.Locationid).HasColumnName("locationid");
 
-                entity.Property(e => e.Productid).HasColumnName("productid");
-
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.Customerid)
@@ -179,11 +201,6 @@ namespace GameKingdomDB.Entities
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.Locationid)
                     .HasConstraintName("orders_locationid_fkey");
-
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.Productid)
-                    .HasConstraintName("orders_productid_fkey");
             });
 
             modelBuilder.Entity<PgStatStatements>(entity =>

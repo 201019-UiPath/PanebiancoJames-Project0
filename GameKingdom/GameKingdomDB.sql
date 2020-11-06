@@ -47,7 +47,6 @@ create table orders
 	date timestamp not null,
 	cost int not null,
 	customerid int references customer (id),
-	productid int references product (id),
 	locationid int references location (id)
 );
 
@@ -58,6 +57,16 @@ create table inventory
 	quantity int not null,
 	productid int references product (id),
 	locationid int references location (id)
+
+);
+
+-- creating orderitems table --
+create table orderitems
+(
+	id serial primary key,
+	totalitems int not null,
+	productid int references product (id),
+	orderid int references orders (id)
 );
 
 -- inserting seed data --

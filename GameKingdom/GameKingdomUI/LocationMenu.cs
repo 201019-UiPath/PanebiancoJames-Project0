@@ -123,7 +123,7 @@ namespace GameKingdomUI
 
                 selectedProduct = productService.GetProductById(int.Parse(inventoryInput));
 
-                Console.WriteLine($"{selectedProduct.GameName}");
+                
                 Log.Information($"User Chose Item: {selectedProduct.GameName}");
 
                 NewOrder();

@@ -8,7 +8,7 @@ namespace GameKingdomDB.Entities
         public Product()
         {
             Inventory = new HashSet<Inventory>();
-            Orders = new HashSet<Orders>();
+            Orderitems = new HashSet<Orderitems>();
         }
 
         public int Id { get; set; }
@@ -16,6 +16,6 @@ namespace GameKingdomDB.Entities
         public int Price { get; set; }
 
         public virtual ICollection<Inventory> Inventory { get; set; }
-        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Orderitems> Orderitems { get; set; }
     }
 }

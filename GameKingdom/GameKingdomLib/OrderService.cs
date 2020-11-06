@@ -56,5 +56,38 @@ namespace GameKingdomLib
         {
             return repo.GetAllOrdersByLocationId(id);
         }
+
+        public List<Orders> GetAllOrdersDateAsc(int customerId)
+        {
+            return repo.GetAllOrdersDateAsc(customerId);
+        }
+        public List<Orders> GetAllOrdersDateDesc(int customerId)
+        {
+            return repo.GetAllOrdersDateDesc(customerId);
+        }
+        public List<Orders> GetAllOrdersPriceAsc(int customerId)
+        {
+            return repo.GetAllOrdersPriceAsc(customerId);
+        }
+        public List<Orders> GetAllOrdersPriceDesc(int customerId)
+        {
+            return repo.GetAllOrdersPriceDesc(customerId);
+        }
+        public List<Orders> GetAllLocationOrdersDateAsc(int locatoinId)
+        {
+            return repo.GetAllLocationOrdersDateAsc(locatoinId);
+        }
+        public List<Orders> GetAllLocationOrdersDateDesc(int locatoinId)
+        {
+            return repo.GetAllLocationOrdersDateDesc(locatoinId);
+        }
+        public List<Orders> GetAllLocationOrdersPriceAsc(int locatoinId)
+        {
+            return repo.GetAllLocationOrdersPriceAsc(locatoinId);
+        }
+        public List<Orders> GetAllLocationOrdersPriceDesc(int locatoinId)
+        {
+            return repo.GetAllLocationOrdersPriceDesc(locatoinId);
+        }
     }
 }

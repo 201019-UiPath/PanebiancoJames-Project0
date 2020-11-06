@@ -144,6 +144,46 @@ namespace GameKingdomDB.Mappers
             };
         }
 
+        public Models.OrderItems ParseOrderItems(Entities.Orderitems orderItems)
+        {
+            return new Models.OrderItems() {
+                TotalItems = orderItems.Totalitems,
+                ProductId = (int) orderItems.Productid,
+                OrdersId = (int) orderItems.Orderid,
+                Id = orderItems.Id
+            };
+        }
+
+        public Entities.Orderitems ParseOrderItems(Models.OrderItems orderItems)
+        {
+            return new Entities.Orderitems() {
+                Totalitems = orderItems.TotalItems,
+                Productid = orderItems.ProductId,
+                Orderid = orderItems.OrdersId,
+                Id = orderItems.Id
+            };
+        }
+
+        public List<Models.OrderItems> ParseOrderItems(ICollection<Entities.Orderitems> orderItems)
+        {
+            List<Models.OrderItems> allOrderItems = new List<Models.OrderItems>();
+            foreach(var oi in orderItems)
+            {
+                allOrderItems.Add(ParseOrderItems(oi));
+            }
+            return allOrderItems;
+        }
+
+        public ICollection<Entities.Orderitems> ParseOrderItems(List<Models.OrderItems> orderItems)
+        {
+            ICollection<Entities.Orderitems> allOrderItems = new List<Entities.Orderitems>();
+            foreach(var oi in orderItems)
+            {
+                allOrderItems.Add(ParseOrderItems(oi));
+            }
+            return allOrderItems;
+        }
+
         public Models.Orders ParseOrders(Entities.Orders orders)
         {
             return new Models.Orders() {
@@ -151,7 +191,6 @@ namespace GameKingdomDB.Mappers
                 Cost = orders.Cost,
                 CustomerId = (int) orders.Customerid,
                 LocationId = (int) orders.Locationid,
-                ProductId = (int) orders.Productid,
                 Id = orders.Id
             };
         }
@@ -163,7 +202,6 @@ namespace GameKingdomDB.Mappers
                 Cost = (int) orders.Cost,
                 Customerid = orders.CustomerId,
                 Locationid = orders.LocationId,
-                Productid = orders.ProductId,
                 Id = orders.Id
             };
         }
