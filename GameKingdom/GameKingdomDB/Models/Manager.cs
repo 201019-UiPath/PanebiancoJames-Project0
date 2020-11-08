@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace GameKingdomDB.Models
 {
     /// <summary>
-    /// Manager Class
+    /// Manager Model
     /// </summary>
     public class Manager : Person
     {

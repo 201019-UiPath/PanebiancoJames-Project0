@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace GameKingdomDB.Models
 {
     /// <summary>
-    /// Location Class
+    /// Location Model
     /// </summary>
     public class Location
     {

@@ -20,9 +20,21 @@ namespace GameKingdomLib
             repo.AddToInventory(newInventoryItem);
         }
 
-        public void UpdateInventory(Inventory inventoryItem,int quantity)
+        public void AddToInventory(int locationId, int productId,int quantity)
         {
-            repo.UpdateInventory(inventoryItem, quantity);
+            repo.AddToInventory(locationId, productId, quantity);
+        }
+
+        public void RemoveFromInventory(int locationId, int productId,int quantity)
+        {
+            Inventory currentInventory = repo.GetProductByLocationAndProductId(locationId, productId);
+            
+            if(quantity > currentInventory.Quantity)
+            {
+                Log.Error($"Not Enough Product. User Requested Amount: {quantity}, Available Amount: {currentInventory.Quantity}");
+                throw new Exception("\nNot Enough Product in Inventory");
+            }
+            repo.RemoveFromInventory(locationId, productId, quantity);
         }
 
         public Inventory GetInventoryById(int id)

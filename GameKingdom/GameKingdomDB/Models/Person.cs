@@ -1,7 +1,7 @@
 namespace GameKingdomDB.Models
 {
     /// <summary>
-    /// Person Class
+    /// Person Model
     /// </summary>
     public class Person
     {

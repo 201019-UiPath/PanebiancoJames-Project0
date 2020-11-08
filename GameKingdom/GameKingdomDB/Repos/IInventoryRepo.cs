@@ -7,7 +7,9 @@ namespace GameKingdomDB.Repos
     {
         void AddToInventory(Inventory inventoryItem);
 
-        void UpdateInventory(Inventory inventoryItem, int quantity);
+        void RemoveFromInventory(int locationId, int productId, int quantity);
+
+        void AddToInventory(int locationId, int productId, int quantity);
 
         Inventory GetInventoryById(int id);
 

@@ -50,7 +50,7 @@ namespace GameKingdomUI
                 List<models.Location> locations = locationService.GetAllLocations();
                 foreach(var l in locations)
                 {
-                    Console.WriteLine($"Index: {/*locations.IndexOf(l)*/l.Id}\t State: {l.State}, City: {l.City}, Street: {l.Street}");
+                    Console.WriteLine($"Index: {l.Id}\t State: {l.State}, City: {l.City}, Street: {l.Street}");
                 }
                 Console.WriteLine("Press [3] to go back to Main Menu");
                 userInputLocation = Console.ReadLine();
@@ -58,11 +58,11 @@ namespace GameKingdomUI
                 {
                     case "1":
                         Log.Information($"User Chose Location Id: {userInputLocation}");
-                        ChooseMenu();
+                        Inventory();
                         break;
                     case "2":
                         Log.Information($"User Chose Location Id: {userInputLocation}");
-                        ChooseMenu();
+                        Inventory();
                         break;
                     case "3":
                         Log.Information("Back to Customer Menu");
@@ -77,7 +77,7 @@ namespace GameKingdomUI
 
 
         }
-
+        /* Zombie code for potential use later
         public void ChooseMenu()
         {
             string userInput;
@@ -100,7 +100,10 @@ namespace GameKingdomUI
                 }
             } while (showMenu);
         }
-
+        */
+        /// <summary>
+        /// Method to select a Product from Inventory
+        /// </summary>
         public void Inventory()
         {
             string inventoryInput;
@@ -127,22 +130,47 @@ namespace GameKingdomUI
                 Log.Information($"User Chose Item: {selectedProduct.GameName}");
 
                 NewOrder();
-                
                 Log.Information("User Made Order");
+                // Ask to show orders
+                ShowOrder();
+
 
             } while (!inventoryInput.Equals("0"));
         }
-
+        /// <summary>
+        /// Method to place an Order
+        /// </summary>
         public void NewOrder()
         {
+            string amountBuy;
+            Console.WriteLine($"\nHow many games of {selectedProduct.GameName} would you like to buy?");
+            amountBuy = Console.ReadLine();
+            try{
+                inventoryService.RemoveFromInventory(int.Parse(userInputLocation), selectedProduct.Id, int.Parse(amountBuy));
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
             models.Orders orders = new models.Orders();
             orders.CustomerId = customer.Id;
             orders.LocationId = int.Parse(userInputLocation);
-            orders.ProductId = selectedProduct.Id;
-            orders.Cost = selectedProduct.Price;
+            orders.Cost = selectedProduct.Price * int.Parse(amountBuy);
             orders.OrderDate = date;
-
             orderService.AddOrder(orders);
         }
+        /// <summary>
+        /// Method to show your Orders
+        /// </summary>
+        public void ShowOrder()
+        {
+            models.Location location = locationService.GetLocationById(int.Parse(userInputLocation));
+            List<models.Orders> orders = orderService.GetAllOrdersByCustomerId(customer.Id);
+            foreach(var o in orders)
+            {
+                Console.WriteLine($"\nOrderId: {o.Id}\nDate: {o.OrderDate}\nLocation:\n\tState: {location.State}\n\tCity: {location.City}\n\tStreet: {location.Street}\nCost: {o.Cost}");
+            }
+        }
+
     }
 }

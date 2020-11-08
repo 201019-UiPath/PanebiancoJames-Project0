@@ -128,9 +128,15 @@ namespace GameKingdomDB.Repos
             context.SaveChanges();
         }
 
-        public void UpdateInventory(Models.Inventory inventoryItem, int quantity)
+        public void RemoveFromInventory(int locationId, int productId, int quantity)
         {
-            context.Inventory.Single(x => x.Id == inventoryItem.Id).Quantity -= quantity;
+            context.Inventory.Single(x => x.Locationid == locationId && x.Productid == productId).Quantity -= quantity;
+            context.SaveChanges();
+        }
+
+        public void AddToInventory(int locationId, int productId, int quantity)
+        {
+            context.Inventory.Single(x => x.Locationid == locationId && x.Productid == productId).Quantity += quantity;
             context.SaveChanges();
         }
 

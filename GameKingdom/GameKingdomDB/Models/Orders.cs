@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace GameKingdomDB.Models
 {
     /// <summary>
-    /// Orders Class
+    /// Orders Model
     /// </summary>
     public class Orders
     {
@@ -13,8 +13,6 @@ namespace GameKingdomDB.Models
         public int CustomerId {get; set;}
 
         public int LocationId {get; set;}
-
-        public int ProductId {get; set;}
 
         public DateTime OrderDate {get; set;}
 

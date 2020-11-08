@@ -250,3 +250,92 @@
  2020-11-05 09:19:38.124 -05:00 [INF] Back to Customer Menu
  2020-11-05 09:19:39.483 -05:00 [INF] Back to Main Menu
  2020-11-05 09:19:40.731 -05:00 [INF] Program Exited
+ 2020-11-07 16:16:26.269 -05:00 [INF] Program has started
+ 2020-11-07 16:16:28.747 -05:00 [INF] Customer Menu Launched
+ 2020-11-07 16:16:50.414 -05:00 [INF] New Customer Created
+ 2020-11-07 16:16:50.555 -05:00 [INF] Moved to Location Menu
+ 2020-11-07 16:18:14.369 -05:00 [INF] User Chose Location Id: 2
+ 2020-11-07 16:18:21.850 -05:00 [INF] User Chose Location Id: 1
+ 2020-11-07 16:18:39.867 -05:00 [INF] Back to Customer Menu
+ 2020-11-07 16:18:41.996 -05:00 [INF] Back to Main Menu
+ 2020-11-07 16:18:42.853 -05:00 [INF] Program Exited
+ 2020-11-07 20:20:38.057 -05:00 [INF] Program has started
+ 2020-11-07 20:20:39.944 -05:00 [INF] Customer Menu Launched
+ 2020-11-07 20:20:56.274 -05:00 [INF] New Customer Created
+ 2020-11-07 20:20:56.414 -05:00 [INF] Moved to Location Menu
+ 2020-11-07 20:21:06.649 -05:00 [INF] User Chose Location Id: 2
+ 2020-11-07 20:21:13.547 -05:00 [INF] User Chose Item: Spyro
+ 2020-11-07 20:32:23.864 -05:00 [INF] Program has started
+ 2020-11-07 20:32:26.014 -05:00 [INF] Customer Menu Launched
+ 2020-11-07 20:32:37.170 -05:00 [INF] New Customer Created
+ 2020-11-07 20:32:37.307 -05:00 [INF] Moved to Location Menu
+ 2020-11-07 20:32:39.280 -05:00 [INF] User Chose Location Id: 1
+ 2020-11-07 20:32:41.172 -05:00 [INF] User Chose Item: Spyro
+ 2020-11-07 20:41:23.823 -05:00 [INF] Program has started
+ 2020-11-07 20:41:25.381 -05:00 [INF] Customer Menu Launched
+ 2020-11-07 20:41:35.828 -05:00 [INF] New Customer Created
+ 2020-11-07 20:41:35.963 -05:00 [INF] Moved to Location Menu
+ 2020-11-07 20:41:38.363 -05:00 [INF] User Chose Location Id: 2
+ 2020-11-07 20:41:41.953 -05:00 [INF] User Chose Item: Spyro
+ 2020-11-07 20:42:11.535 -05:00 [INF] Program has started
+ 2020-11-07 20:42:12.946 -05:00 [INF] Customer Menu Launched
+ 2020-11-07 20:42:27.477 -05:00 [INF] New Customer Created
+ 2020-11-07 20:42:27.616 -05:00 [INF] Moved to Location Menu
+ 2020-11-07 20:42:28.749 -05:00 [INF] User Chose Location Id: 2
+ 2020-11-07 20:42:30.706 -05:00 [INF] User Chose Item: Spyro
+ 2020-11-07 20:42:32.067 -05:00 [INF] User Made Order
+ 2020-11-07 20:43:23.733 -05:00 [INF] User Chose Item: Cyberpunk 2077
+ 2020-11-07 20:43:27.660 -05:00 [INF] User Made Order
+ 2020-11-07 20:43:43.503 -05:00 [INF] Back to Customer Menu
+ 2020-11-07 20:43:44.388 -05:00 [INF] Back to Main Menu
+ 2020-11-07 20:43:45.230 -05:00 [INF] Program Exited
+ 2020-11-07 20:49:17.488 -05:00 [INF] Program has started
+ 2020-11-07 20:49:19.418 -05:00 [INF] Customer Menu Launched
+ 2020-11-07 20:49:30.323 -05:00 [INF] New Customer Created
+ 2020-11-07 20:49:30.468 -05:00 [INF] Moved to Location Menu
+ 2020-11-07 20:49:35.015 -05:00 [INF] User Chose Location Id: 2
+ 2020-11-07 20:49:42.764 -05:00 [INF] User Chose Item: Cyberpunk 2077
+ 2020-11-07 20:49:51.384 -05:00 [INF] User Made Order
+ 2020-11-07 20:51:02.365 -05:00 [INF] User Chose Item: Spyro
+ 2020-11-07 20:51:04.647 -05:00 [INF] User Made Order
+ 2020-11-07 20:51:54.148 -05:00 [INF] Back to Customer Menu
+ 2020-11-07 20:51:55.225 -05:00 [INF] Back to Main Menu
+ 2020-11-07 20:51:56.222 -05:00 [INF] Program Exited
+ 2020-11-07 21:38:26.738 -05:00 [INF] Program has started
+ 2020-11-07 21:38:29.442 -05:00 [INF] Customer Menu Launched
+ 2020-11-07 21:38:47.269 -05:00 [INF] New Customer Created
+ 2020-11-07 21:38:47.408 -05:00 [INF] Moved to Location Menu
+ 2020-11-07 21:38:51.018 -05:00 [INF] User Chose Location Id: 1
+ 2020-11-07 21:38:58.800 -05:00 [INF] User Chose Item: Spyro
+ 2020-11-07 21:39:01.554 -05:00 [ERR] Not Enough Product. User Requested Amount: 22, Available Amount: 20
+ 2020-11-07 21:42:29.070 -05:00 [INF] Program has started
+ 2020-11-07 21:42:30.329 -05:00 [INF] Customer Menu Launched
+ 2020-11-07 21:42:38.371 -05:00 [INF] New Customer Created
+ 2020-11-07 21:42:38.507 -05:00 [INF] Moved to Location Menu
+ 2020-11-07 21:42:39.923 -05:00 [INF] User Chose Location Id: 1
+ 2020-11-07 21:42:53.603 -05:00 [INF] User Chose Item: Spyro
+ 2020-11-07 21:42:56.086 -05:00 [ERR] Not Enough Product. User Requested Amount: 22, Available Amount: 20
+ 2020-11-07 21:42:56.175 -05:00 [INF] User Made Order
+ 2020-11-07 21:45:17.827 -05:00 [INF] User Chose Item: Spyro
+ 2020-11-07 21:45:18.898 -05:00 [ERR] Not Enough Product. User Requested Amount: 22, Available Amount: 20
+ 2020-11-07 21:45:18.963 -05:00 [INF] User Made Order
+ 2020-11-07 21:46:11.548 -05:00 [INF] Program has started
+ 2020-11-07 21:46:13.635 -05:00 [INF] Customer Menu Launched
+ 2020-11-07 21:46:23.456 -05:00 [INF] New Customer Created
+ 2020-11-07 21:46:23.597 -05:00 [INF] Moved to Location Menu
+ 2020-11-07 21:46:24.860 -05:00 [INF] User Chose Location Id: 2
+ 2020-11-07 21:46:32.920 -05:00 [INF] User Chose Item: Spyro
+ 2020-11-07 21:46:44.303 -05:00 [ERR] Not Enough Product. User Requested Amount: 5, Available Amount: 3
+ 2020-11-07 21:46:44.398 -05:00 [INF] User Made Order
+ 2020-11-07 21:47:51.616 -05:00 [INF] Program has started
+ 2020-11-07 21:47:53.197 -05:00 [INF] Customer Menu Launched
+ 2020-11-07 21:48:01.226 -05:00 [INF] New Customer Created
+ 2020-11-07 21:48:01.369 -05:00 [INF] Moved to Location Menu
+ 2020-11-07 21:48:02.488 -05:00 [INF] User Chose Location Id: 2
+ 2020-11-07 21:48:05.778 -05:00 [INF] User Chose Item: Spyro
+ 2020-11-07 21:48:07.845 -05:00 [ERR] Not Enough Product. User Requested Amount: 5, Available Amount: 3
+ 2020-11-07 21:48:07.933 -05:00 [INF] User Made Order
+ 2020-11-07 21:48:18.044 -05:00 [INF] User Chose Location Id: 1
+ 2020-11-07 21:48:29.273 -05:00 [INF] Back to Customer Menu
+ 2020-11-07 21:48:30.051 -05:00 [INF] Back to Main Menu
+ 2020-11-07 21:48:30.845 -05:00 [INF] Program Exited

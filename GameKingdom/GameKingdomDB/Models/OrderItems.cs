@@ -1,7 +1,7 @@
 namespace GameKingdomDB.Models
 {
     /// <summary>
-    /// Orderitems class
+    /// OrderItems Model
     /// </summary>
     public class OrderItems
     {

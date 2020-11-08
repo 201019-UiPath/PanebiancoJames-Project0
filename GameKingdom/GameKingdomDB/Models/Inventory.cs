@@ -1,7 +1,7 @@
 namespace GameKingdomDB.Models
 {
     /// <summary>
-    /// Inventory Class
+    /// Inventory Model
     /// </summary>
     public class Inventory
     {

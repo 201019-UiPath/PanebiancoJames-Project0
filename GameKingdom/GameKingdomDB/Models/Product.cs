@@ -1,7 +1,7 @@
 namespace GameKingdomDB.Models
 {
     /// <summary>
-    /// Product Class
+    /// Product Model
     /// </summary>
     public class Product
     {
