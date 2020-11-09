@@ -39,9 +39,7 @@ namespace GameKingdomDB.Repos
 
         public List<Models.Customer> GetAllCustomers()
         {
-            return mapper.ParseCustomer(
-                context.Customer.
-                ToList());
+            return mapper.ParseCustomer(context.Customer.ToList());
         }
 
         public void AddOrder(Models.Orders order)
@@ -250,6 +248,21 @@ namespace GameKingdomDB.Repos
         public List<Models.Orders> GetAllLocationOrdersPriceDesc(int locationId)
         {
             return mapper.ParseOrders(context.Orders.Where(x => x.Locationid == locationId).OrderByDescending(x => x.Cost).ToList());
+        }
+
+        public Models.Manager SignInManager(string name, string password)
+        {
+            return mapper.ParseManager(context.Manager.First(x => x.Name == name && x.Password == password));
+        }
+
+        public List<Models.Manager> GetAllManagers()
+        {
+            return mapper.ParseManager(context.Manager.ToList());
+        }
+
+        public Models.Manager GetManager(string name, string password)
+        {
+            return mapper.ParseManager(context.Manager.First(x => x.Name == name && x.Password == password));
         }
     }
 }

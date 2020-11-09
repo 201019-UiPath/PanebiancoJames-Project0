@@ -339,3 +339,65 @@
  2020-11-07 21:48:29.273 -05:00 [INF] Back to Customer Menu
  2020-11-07 21:48:30.051 -05:00 [INF] Back to Main Menu
  2020-11-07 21:48:30.845 -05:00 [INF] Program Exited
+ 2020-11-08 20:52:04.546 -05:00 [INF] Program has started
+ 2020-11-08 20:52:06.403 -05:00 [INF] Customer Menu Launched
+ 2020-11-08 20:52:18.742 -05:00 [INF] New Customer Created
+ 2020-11-08 20:52:18.883 -05:00 [INF] Moved to Location Menu
+ 2020-11-08 20:52:20.705 -05:00 [INF] User Chose Location Id: 2
+ 2020-11-08 20:52:26.273 -05:00 [INF] User Chose Location Id: 1
+ 2020-11-08 20:52:28.889 -05:00 [INF] User Chose Location Id: 2
+ 2020-11-08 20:53:42.071 -05:00 [INF] Program has started
+ 2020-11-08 20:53:43.768 -05:00 [INF] Customer Menu Launched
+ 2020-11-08 20:54:13.016 -05:00 [INF] New Customer Created
+ 2020-11-08 20:54:13.150 -05:00 [INF] Moved to Location Menu
+ 2020-11-08 20:58:53.797 -05:00 [INF] User Chose Location Id: 1
+ 2020-11-08 21:00:19.409 -05:00 [INF] Program has started
+ 2020-11-08 21:00:20.648 -05:00 [INF] Customer Menu Launched
+ 2020-11-08 21:00:25.734 -05:00 [INF] New Customer Created
+ 2020-11-08 21:00:25.886 -05:00 [INF] Moved to Location Menu
+ 2020-11-08 21:00:27.087 -05:00 [INF] User Chose Location Id: 1
+ 2020-11-08 21:00:29.626 -05:00 [INF] User Chose Item: Spyro
+ 2020-11-08 21:00:34.665 -05:00 [INF] User Made Order
+ 2020-11-08 21:01:42.790 -05:00 [INF] Showing Order
+ 2020-11-08 21:02:05.594 -05:00 [INF] User Chose Item: Spyro
+ 2020-11-08 21:02:08.275 -05:00 [INF] User Made Order
+ 2020-11-08 21:02:10.031 -05:00 [INF] Showing Order
+ 2020-11-08 21:03:14.106 -05:00 [INF] Back to Customer Menu
+ 2020-11-08 21:03:15.242 -05:00 [INF] Back to Main Menu
+ 2020-11-08 21:03:16.088 -05:00 [INF] Program Exited
+ 2020-11-09 07:25:07.425 -05:00 [INF] Program has started
+ 2020-11-09 07:25:10.221 -05:00 [INF] Manager Menu Launched
+ 2020-11-09 07:25:26.980 -05:00 [ERR] Invalid Login. Name: Larry King Password: apassword
+ 2020-11-09 07:25:58.602 -05:00 [ERR] Invalid Login. Name: John Barr Password: 12345
+ 2020-11-09 07:26:01.796 -05:00 [INF] Program Exited
+ 2020-11-09 07:29:45.439 -05:00 [INF] Program has started
+ 2020-11-09 07:29:47.914 -05:00 [INF] Manager Menu Launched
+ 2020-11-09 07:30:13.681 -05:00 [INF] User Chose to View Location Inventory
+ 2020-11-09 07:30:28.708 -05:00 [INF] Back to Manager Menu
+ 2020-11-09 07:30:31.148 -05:00 [INF] Program Exited
+ 2020-11-09 07:36:14.791 -05:00 [INF] Program has started
+ 2020-11-09 07:36:16.010 -05:00 [INF] Manager Menu Launched
+ 2020-11-09 07:36:26.311 -05:00 [ERR] Invalid Login. Name: Larry King Password: 12345
+ 2020-11-09 07:39:03.354 -05:00 [INF] Program has started
+ 2020-11-09 07:39:05.468 -05:00 [INF] Manager Menu Launched
+ 2020-11-09 07:39:17.075 -05:00 [INF] User Chose to View Location Inventory
+ 2020-11-09 07:39:49.145 -05:00 [INF] Back to Manager Menu
+ 2020-11-09 07:39:51.661 -05:00 [INF] Program Exited
+ 2020-11-09 07:43:16.328 -05:00 [INF] Program has started
+ 2020-11-09 07:43:17.383 -05:00 [INF] Customer Menu Launched
+ 2020-11-09 07:43:30.253 -05:00 [INF] New Customer Created
+ 2020-11-09 07:43:30.388 -05:00 [INF] Moved to Location Menu
+ 2020-11-09 07:43:42.623 -05:00 [INF] User Chose Location Id: 1
+ 2020-11-09 07:43:47.585 -05:00 [INF] User Chose Item: Spyro
+ 2020-11-09 07:43:58.711 -05:00 [INF] User Made Order
+ 2020-11-09 07:44:03.208 -05:00 [INF] Showing Order
+ 2020-11-09 07:44:30.370 -05:00 [INF] User Chose Item: Cyberpunk 2077
+ 2020-11-09 07:44:32.744 -05:00 [INF] User Made Order
+ 2020-11-09 07:44:34.277 -05:00 [INF] Showing Order
+ 2020-11-09 07:45:00.209 -05:00 [INF] Back to Customer Menu
+ 2020-11-09 07:45:01.987 -05:00 [INF] Back to Main Menu
+ 2020-11-09 07:45:03.284 -05:00 [INF] Manager Menu Launched
+ 2020-11-09 07:45:25.037 -05:00 [INF] User Chose to View Location Inventory
+ 2020-11-09 07:45:54.387 -05:00 [INF] User Chose to View Location Orders
+ 2020-11-09 07:48:52.551 -05:00 [INF] Back to Manager Menu
+ 2020-11-09 07:49:08.375 -05:00 [INF] Program Exited

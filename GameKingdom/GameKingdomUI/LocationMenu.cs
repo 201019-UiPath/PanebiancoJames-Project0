@@ -50,7 +50,7 @@ namespace GameKingdomUI
                 List<models.Location> locations = locationService.GetAllLocations();
                 foreach(var l in locations)
                 {
-                    Console.WriteLine($"Index: {l.Id}\t State: {l.State}, City: {l.City}, Street: {l.Street}");
+                    Console.WriteLine($"Id: {l.Id}\t State: {l.State}, City: {l.City}, Street: {l.Street}");
                 }
                 Console.WriteLine("Press [3] to go back to Main Menu");
                 userInputLocation = Console.ReadLine();
@@ -77,20 +77,28 @@ namespace GameKingdomUI
 
 
         }
-        /* Zombie code for potential use later
+       
+       /// <summary>
+       /// Method asking user whether they want to view orders or not
+       /// </summary>
         public void ChooseMenu()
         {
             string userInput;
             bool showMenu = true;
             do {
                 Console.WriteLine("\nPlease choose what you want to do.");
-                Console.WriteLine("[0] Inventory");
+                Console.WriteLine("[1] View Orders");
+                Console.WriteLine("[2] Back to Location Menu");
                 userInput = Console.ReadLine();
                 switch(userInput)
                 {
-                    case "0":
-                        Log.Information("User Chose Inventory");
-                        Inventory();
+                    case "1":
+                        Log.Information("Showing Order");
+                        ShowOrder();
+                        showMenu = false;
+                        break;
+                    case "2":
+                        Log.Information("Back to Location Menu");
                         showMenu = false;
                         break;
                     default:
@@ -100,7 +108,7 @@ namespace GameKingdomUI
                 }
             } while (showMenu);
         }
-        */
+
         /// <summary>
         /// Method to select a Product from Inventory
         /// </summary>
@@ -132,7 +140,7 @@ namespace GameKingdomUI
                 NewOrder();
                 Log.Information("User Made Order");
                 // Ask to show orders
-                ShowOrder();
+                ChooseMenu();
 
 
             } while (!inventoryInput.Equals("0"));
@@ -160,16 +168,65 @@ namespace GameKingdomUI
             orderService.AddOrder(orders);
         }
         /// <summary>
-        /// Method to show your Orders
+        /// Method to show your personal Orders
         /// </summary>
         public void ShowOrder()
         {
+            string showAOrder;
             models.Location location = locationService.GetLocationById(int.Parse(userInputLocation));
+            do{
+                System.Console.WriteLine("\nPlease select how you want your orders to be displayed.");
+                System.Console.WriteLine("[0] Date Asc");
+                System.Console.WriteLine("[1] Date Desc");
+                System.Console.WriteLine("[2] Price Asc");
+                System.Console.WriteLine("[3] Price Desc");
+                System.Console.WriteLine("[4] Back to Location Menu");
+                showAOrder = Console.ReadLine();
+                switch(showAOrder)
+                {
+                    case "0":
+                        List<models.Orders> ordersDateAsc = orderService.GetAllOrdersDateAsc(customer.Id);
+                        foreach(var oda in ordersDateAsc)
+                        {
+                            Console.WriteLine($"\nDate: {oda.OrderDate}\nLocation:\n\tState: {location.State}\n\tCity: {location.City}\n\tStreet: {location.Street}\nCost: {oda.Cost}");
+                        }
+                        break;
+                    case "1":
+                        List<models.Orders> ordersDateDesc = orderService.GetAllOrdersDateDesc(customer.Id);
+                        foreach(var odd in ordersDateDesc)
+                        {
+                            Console.WriteLine($"\nDate: {odd.OrderDate}\nLocation:\n\tState: {location.State}\n\tCity: {location.City}\n\tStreet: {location.Street}\nCost: {odd.Cost}");
+                        }
+                        break;
+                    case "2":
+                        List<models.Orders> ordersPriceAsc = orderService.GetAllOrdersPriceAsc(customer.Id);
+                        foreach(var opa in ordersPriceAsc)
+                        {
+                            Console.WriteLine($"\nDate: {opa.OrderDate}\nLocation:\n\tState: {location.State}\n\tCity: {location.City}\n\tStreet: {location.Street}\nCost: {opa.Cost}");
+                        }
+                        break;
+                    case "3":
+                        List<models.Orders> ordersPriceDesc = orderService.GetAllOrdersPriceDesc(customer.Id);
+                        foreach(var opd in ordersPriceDesc)
+                        {
+                            Console.WriteLine($"\nDate: {opd.OrderDate}\nLocation:\n\tState: {location.State}\n\tCity: {location.City}\n\tStreet: {location.Street}\nCost: {opd.Cost}");
+                        }
+                        break;
+                    case "4":
+                        break;
+                    default:
+                        Log.Information($"Invalid Input Choosing Order Details: {showAOrder}");
+                        service.InvalidInputMessage();
+                        break;
+                }
+            } while(!showAOrder.Equals("4"));
+            /*
             List<models.Orders> orders = orderService.GetAllOrdersByCustomerId(customer.Id);
             foreach(var o in orders)
             {
-                Console.WriteLine($"\nOrderId: {o.Id}\nDate: {o.OrderDate}\nLocation:\n\tState: {location.State}\n\tCity: {location.City}\n\tStreet: {location.Street}\nCost: {o.Cost}");
+                Console.WriteLine($"\nDate: {o.OrderDate}\nLocation:\n\tState: {location.State}\n\tCity: {location.City}\n\tStreet: {location.Street}\nCost: {o.Cost}");
             }
+            */
         }
 
     }

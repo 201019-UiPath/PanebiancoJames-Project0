@@ -144,6 +144,26 @@ namespace GameKingdomDB.Mappers
             };
         }
 
+        public List<Models.Manager> ParseManager(ICollection<Entities.Manager> managers)
+        {
+            List<Models.Manager> allManagers = new List<Models.Manager>();
+            foreach(var m in managers)
+            {
+                allManagers.Add(ParseManager(m));
+            }
+            return allManagers;
+        }
+
+        public ICollection<Entities.Manager> ParseManager(List<Models.Manager> managers)
+        {
+            ICollection<Entities.Manager> allManagers = new List<Entities.Manager>();
+            foreach(var m in managers)
+            {
+                allManagers.Add(ParseManager(m));
+            }
+            return allManagers;
+        }
+
         public Models.OrderItems ParseOrderItems(Entities.Orderitems orderItems)
         {
             return new Models.OrderItems() {

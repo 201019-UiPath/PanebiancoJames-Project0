@@ -1,6 +1,7 @@
 using System;
 using GameKingdomDB;
-using GameKingdomDB.Models;
+using entities= GameKingdomDB.Entities;
+using models = GameKingdomDB.Models;
 using GameKingdomLib;
 using GameKingdomDB.Mappers;
 using GameKingdomDB.Repos;
@@ -13,7 +14,9 @@ namespace GameKingdomUI
     {
         private string userInput;
 
-        private IManagerRepo repo;
+        private models.Manager manager;
+
+        private ManagerInventoryMenu managerInventoryMenu;
 
         private IMessagingService service;
 
@@ -21,7 +24,7 @@ namespace GameKingdomUI
         
         public ManagerMenu(IManagerRepo repo, IMessagingService service)
         {
-            this.repo = repo;
+            this.manager = new models.Manager();
             this.service = service;
             this.managerService = new ManagerService(repo);
         }
@@ -31,37 +34,39 @@ namespace GameKingdomUI
             do
             {
                 Console.WriteLine("\nWelcome Manager! What would you like to do?");
-                Console.WriteLine("[0] Signup?");
-                Console.WriteLine("[1] Login?");
-                Console.WriteLine("[2] Go back to the main menu?");
+                Console.WriteLine("[0] Login?");
+                Console.WriteLine("[1] Go back to the main menu?");
                 userInput = Console.ReadLine();
                 switch (userInput)
                 {
                     case "0":
-                        //call create a Manager, get Manager details
-                        Manager newManager = GetManagerDetails();
-                        //call the business logic and the repo
-                        repo.AddAManager(newManager);
+                        models.Manager loginManager = SignIn();
+                        try{
+                            managerService.SignInManager(loginManager.Name,loginManager.Password);
+                        } catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                            break;
+                        }
+                        manager = managerService.GetManager(loginManager.Name, loginManager.Password);
+                        managerInventoryMenu = new ManagerInventoryMenu(manager, (IManagerRepo) managerService.repo, new MessagingService());
+                        managerInventoryMenu.Start();
                         break;
                     case "1":
-                        //call login   
-                                        
-                        break;
-                    case "2":
                         //back to main menu message
                         service.BackToMainMenuMessage();
-                        break;
+                        break;          
                     default:
                         //invalid input message;
                         service.InvalidInputMessage();
                         break;
                 }
-            } while (!userInput.Equals("2"));
+            } while (!userInput.Equals("1"));
         }
 
-        public Manager GetManagerDetails()
+        public models.Manager SignIn()
         {
-            Manager manager = new Manager();
+            models.Manager manager = new models.Manager();
             Console.Write("\nEnter Your Name: ");
             manager.Name = Console.ReadLine();
             Console.Write("Enter Your Password: ");
