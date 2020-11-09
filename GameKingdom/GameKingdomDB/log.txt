@@ -401,3 +401,26 @@
  2020-11-09 07:45:54.387 -05:00 [INF] User Chose to View Location Orders
  2020-11-09 07:48:52.551 -05:00 [INF] Back to Manager Menu
  2020-11-09 07:49:08.375 -05:00 [INF] Program Exited
+ 2020-11-09 08:27:39.822 -05:00 [INF] Program has started
+ 2020-11-09 08:27:41.589 -05:00 [INF] Manager Menu Launched
+ 2020-11-09 08:27:49.553 -05:00 [ERR] Invalid Login. Name: Yep Password: Yep
+ 2020-11-09 08:28:58.480 -05:00 [INF] Program Exited
+ 2020-11-09 08:33:40.767 -05:00 [INF] Program has started
+ 2020-11-09 08:33:42.386 -05:00 [INF] Customer Menu Launched
+ 2020-11-09 08:34:03.426 -05:00 [INF] New Customer Created
+ 2020-11-09 08:34:03.561 -05:00 [INF] Moved to Location Menu
+ 2020-11-09 08:34:15.741 -05:00 [INF] User Chose Location Id: 1
+ 2020-11-09 08:34:22.805 -05:00 [INF] User Chose Item: Cyberpunk 2077
+ 2020-11-09 08:34:27.140 -05:00 [INF] User Made Order
+ 2020-11-09 08:34:36.326 -05:00 [INF] Back to Location Menu
+ 2020-11-09 08:34:49.555 -05:00 [INF] User Chose Item: Spyro
+ 2020-11-09 08:34:51.243 -05:00 [INF] User Made Order
+ 2020-11-09 08:34:52.871 -05:00 [INF] Showing Order
+ 2020-11-09 08:35:57.828 -05:00 [INF] Back to Customer Menu
+ 2020-11-09 08:36:02.135 -05:00 [INF] Back to Main Menu
+ 2020-11-09 08:36:08.475 -05:00 [INF] Manager Menu Launched
+ 2020-11-09 08:36:22.743 -05:00 [INF] User Chose to View Location Inventory
+ 2020-11-09 08:37:00.113 -05:00 [INF] User Chose to View Location Orders
+ 2020-11-09 08:38:02.892 -05:00 [INF] Back to Manager Menu
+ 2020-11-09 08:38:10.601 -05:00 [ERR] Invalid Login. Name: hello Password: hello
+ 2020-11-09 08:38:18.408 -05:00 [INF] Program Exited
