@@ -27,8 +27,6 @@ namespace GameKingdomUI
 
         private IMessagingService service;
 
-        private DateTime date = DateTime.Now;
-
 
         public LocationMenu(models.Customer customer, ILocationRepo locationRepo, IMessagingService service)
         {
@@ -164,7 +162,7 @@ namespace GameKingdomUI
             orders.CustomerId = customer.Id;
             orders.LocationId = int.Parse(userInputLocation);
             orders.Cost = selectedProduct.Price * int.Parse(amountBuy);
-            orders.OrderDate = date;
+            orders.OrderDate = DateTime.Now;
             orderService.AddOrder(orders);
         }
         /// <summary>

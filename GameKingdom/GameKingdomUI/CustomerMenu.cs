@@ -15,6 +15,8 @@ namespace GameKingdomUI
 
         private LocationMenu locationMenu;
 
+        private CustomerOrderMenu customerOrderMenu;
+
         private models.Customer customer;
 
         private IMessagingService service;
@@ -43,7 +45,13 @@ namespace GameKingdomUI
                 switch (userInput)
                 {
                     case "0":
-                        SignUp();
+                        try{
+                            SignUp();
+                        } catch(Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                            break;
+                        }
                         Log.Information("New Customer Created");
                         // Sets customer id
                         customer = customerService.GetCustomer(customer.Name, customer.Password);
@@ -55,13 +63,15 @@ namespace GameKingdomUI
                         //call create a customer, get customer details
                         models.Customer loginCustomer = SignIn();
                         try{
-                            models.Customer existingCustomer = customerService.GetCustomer(loginCustomer.Name,loginCustomer.Password);
-                            Console.WriteLine($"\nCustomer Name: {existingCustomer.Name} \nCustomer Address: {existingCustomer.Address}");
+                            customerService.GetCustomer(loginCustomer.Name,loginCustomer.Password);
                         } catch (Exception ex)
                         {
                             Console.WriteLine(ex.Message);
-                            continue;
+                            break;
                         }
+                        customer = customerService.GetCustomer(loginCustomer.Name, loginCustomer.Password);
+                        customerOrderMenu = new CustomerOrderMenu(customer, (ICustomerRepo) customerService.repo, new MessagingService());
+                        customerOrderMenu.Start();
                         break;
                     case "2":
                         //back to main menu message

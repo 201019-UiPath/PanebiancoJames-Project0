@@ -17,6 +17,15 @@ namespace GameKingdomLib
 
         public void AddCustomer(Customer newCustomer)
         {
+            List<Customer> getCustomers = repo.GetAllCustomers();
+            foreach(var customer in getCustomers)
+            {
+                if(customer.Name.Equals(newCustomer.Name))
+                {
+                    Log.Error($"Customer already exists. Name: {newCustomer.Name}");
+                    throw new Exception($"\nCustomer name {newCustomer.Name} already exists. Not you? Please enter a unique name.");
+                }
+            }
             repo.AddACustomer(newCustomer);
         }
 
@@ -30,7 +39,11 @@ namespace GameKingdomLib
             List<Customer> getCustomers = repo.GetAllCustomers();
             foreach(var customer in getCustomers)
             {
-                if(!(customer.Name.Equals(name)) || !(customer.Password.Equals(password)))
+                if((customer.Name.Equals(name)) && (customer.Password.Equals(password)))
+                {
+                    return repo.SignInCustomer(name,password);
+                }
+                else
                 {
                     Log.Error($"Invalid Login. Name: {name} Password: {password}");
                     throw new Exception("\nInvalid Name/Password. Please try again");
